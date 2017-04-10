@@ -1,0 +1,151 @@
+<!--
+  Generated template for the Detail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>分享详情</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-grid>
+      <ion-row align-items-center margin class="radius">
+        <ion-col col-2>
+          <img src="../../assets/images/{{lottery.id}}.png" width="50px">
+        </ion-col>
+        <ion-col col-7>
+          <section>
+            <h5 no-margin>双色球第{{lottery.issue}}期</h5>
+            <p><span color="danger">2</span>倍<span color="danger">2</span>注<span color="danger">4</span>元</p>
+            <p class="bottom">{{lottery.current}}/{{lottery.total}}人</p>
+          </section>
+        </ion-col>
+        <ion-col col-3>
+          <p color="danger">带开奖</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <p text-center>截止时间：{{lottery.shareTime}}</p>
+  <p><span color="danger">发起人</span>正在发起抢红包</p>
+  <button class="qiang" large ion-button round color="light" (click)="presentActionSheet()" >抢</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1>
+      </ion-col>
+      <ion-col col-10>
+        3123213123123123
+      </ion-col>
+      <ion-col col-1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        ——
+      </ion-col>
+      <ion-col col-6>
+        已有6/10人抢到红包
+      </ion-col>
+      <ion-col col-3>
+        ——
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="fontSize">
+    <ion-row>
+      <ion-col text-center>
+        参与者
+      </ion-col>
+      <ion-col text-center>
+        比例
+      </ion-col>
+      <ion-col text-center>
+        可中奖金
+      </ion-col>
+      <ion-col text-center>
+        领取时间
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        参与者
+      </ion-col>
+      <ion-col text-center>
+        比例
+      </ion-col>
+      <ion-col text-center>
+        可中奖金
+      </ion-col>
+      <ion-col text-center>
+        领取时间
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        参与者
+      </ion-col>
+      <ion-col text-center>
+        比例
+      </ion-col>
+      <ion-col text-center>
+        可中奖金
+      </ion-col>
+      <ion-col text-center>
+        领取时间
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        参与者
+      </ion-col>
+      <ion-col text-center>
+        比例
+      </ion-col>
+      <ion-col text-center>
+        可中奖金
+      </ion-col>
+      <ion-col text-center>
+        领取时间
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        参与者
+      </ion-col>
+      <ion-col text-center>
+        比例
+      </ion-col>
+      <ion-col text-center>
+        可中奖金
+      </ion-col>
+      <ion-col text-center>
+        领取时间
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        参与者
+      </ion-col>
+      <ion-col text-center>
+        比例
+      </ion-col>
+      <ion-col text-center>
+        可中奖金
+      </ion-col>
+      <ion-col text-center>
+        领取时间
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row >
+    <ion-col col-1></ion-col>
+    <ion-col col-10><button ion-button block color="danger" (click)="goToDetails(lottery)">更多红包这里抢</button></ion-col>
+    <ion-col col-1></ion-col>
+  </ion-row>
+</ion-content>

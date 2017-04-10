@@ -1,0 +1,22 @@
+shuangseqiu {
+    .ball {
+        padding: 2px;
+        div {
+            line-height: 22px;
+            text-align: center;
+            width: 22px;
+            height: 22px;
+            color: #FFF;
+            background: url('../../assets/images/red.png') no-repeat center;
+            background-size: 100%;
+        }
+         :first-child {
+            background-image: url('../../assets/images/blue.png');
+        }
+    }
+    button {
+        width: 32px;
+        height: 32px !important;
+        margin: 0px !important;
+    }
+}

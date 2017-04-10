@@ -1,0 +1,15 @@
+<ion-row align-items-center>
+    <ion-col>
+        <ion-row align-items-center>
+            <ion-col class="ball" *ngFor="let ball of ballArray">
+                <div>{{ball}}</div>
+            </ion-col>
+            <ion-col col-2>
+                <button ion-button round icon-only color="light" (click)="reset()">
+                    <ion-icon ios="ios-sync" md="md-sync">
+                    </ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-col>
+</ion-row>

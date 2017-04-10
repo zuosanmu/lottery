@@ -1,0 +1,31 @@
+page-home {
+    p {
+        line-height: 29px;
+        &.title {
+            width: 50px;
+            line-height: 14px;
+            margin-top: 7px;
+            text-align: center;
+        }
+        &.bottom {
+            line-height: 14px;
+            margin-top: 7px;
+        }
+    }
+    h5 {
+        margin-top: 0;
+        margin-bottom: 3px;
+    }
+    ion-content {
+        background-color: #f0eff5 !important;
+    }
+    ion-list {
+        background-color: #fff;
+    }
+    .redEnvelope {
+        width: 80%;
+    }
+    ion-list{
+      margin-bottom: 10px !important;
+    }
+}
