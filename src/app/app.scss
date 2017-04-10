@@ -33,7 +33,14 @@ button {
 .border-top-yellow {
     border-top: 1px solid #f4ba3c;
 }
+
 .invisibleButton {
-    height:10px;
-    width:40px;
+    height: 10px;
+    width: 40px;
+}
+.bar-button-default-ios,
+.bar-button-default.bar-button-ios-default,
+.bar-button-clear-ios-default {
+  color: #060606;
+  background-color: transparent;
 }

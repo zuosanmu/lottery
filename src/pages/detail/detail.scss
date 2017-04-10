@@ -1,17 +1,58 @@
 page-detail {
-//   ion-content{
-//  background-color: #b72e3b !important;
-//   }
-.radius{
-border-radius:50px;
-border: 1px solid #000;
-}
-ion-list{
-  margin-bottom: 0px !important;
-}
-.fontSize{
-font-size: 12px;
-}
-.qiang{height: 3.8em;}
-
+    //   ion-content{
+    //  background-color: #b72e3b !important;
+    //   }
+    .radius {
+        border-radius: 50px;
+        background-color: #fff;
+    }
+    ion-list {
+        margin-bottom: 0px !important;
+    }
+    .fontSize {
+        font-size: 12px;
+    }
+    .qiang {
+        height: 2.6em;
+        border: 2px solid #fff;
+        font-size: 4rem;
+    }
+    #redPackge {
+        background: url('../../assets/images/redPacketsBg.png') no-repeat center top;
+        background-size: 90% 100%;
+    }
+    .filler {
+        height: 15rem;
+    }
+    ion-content {
+        background-color: #b72e3b !important;
+    }
+    .toolbar-background {
+        background-color: #5b171d;
+    }
+    .bar-button-default-ios,
+    .bar-button-default.bar-button-ios-default,
+    .bar-button-clear-ios-default {
+        color: #fff;
+        background-color: transparent;
+    }
+    .toolbar-title-ios{
+      color: #fff;
+    }
+    .lotteryStatus{
+      line-height: 4.8rem;
+      border-radius: 0px 50px 50px 0px;
+      background-color: #f53d3d;
+    }
+    .initiator{
+      line-height: 4.6rem;
+    }
+    .lotteryball{
+      width: 90%;
+      background-color: #f6d043;
+    }
+    .lotterybg{
+      background: url('../../assets/images/lotterybg.png') no-repeat center top;
+      background-size: 100% 100%;
+    }
 }

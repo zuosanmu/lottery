@@ -58,7 +58,7 @@ import {sharesComponent} from '../playRule/shares/shares'
     HttpModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: '',
-      backButtonIcon:'arrow-dropleft',
+      backButtonIcon:'arrow-back-outline',
       mode:'ios'
     }, {}
   ),
