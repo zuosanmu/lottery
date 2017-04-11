@@ -31,7 +31,21 @@ import { GuagualePage } from '../pages/guaguale/guaguale';
 import { RedEnvelopePage } from '../pages/red-envelope/red-envelope';
 //加载组建
 import { shuangseqiuComponent } from '../playRule/shuangseqiu/shuangseqiu.play';
-import {sharesComponent} from '../playRule/shares/shares'
+import { daletouComponent } from '../playRule/daletou/daletou.play';
+import { pailie3Component } from '../playRule/pailie3/pailie3.play';
+import { pailie5Component } from '../playRule/pailie5/pailie5.play';
+import { qilecaiComponent } from '../playRule/qilecai/qilecai.play';
+import { qixingcaiComponent } from '../playRule/qixingcai/qixingcai.play';
+import { jingcaizuqiuComponent } from '../playRule/jingcaizuqiu/jingcaizuqiu.play';
+import { jingcailanqiuComponent } from '../playRule/jingcailanqiu/jingcailanqiu.play';
+import { shengfucaiComponent } from '../playRule/shengfucai/shengfucai.play';
+import { dingguaguaComponent } from '../playRule/dingguagua/dingguagua.play';
+import { fucaiComponent } from '../playRule/fucai/fucai.play';
+import { guagualeComponent } from '../playRule/guaguale/guaguale.play';
+import { renxuanqiuComponent } from '../playRule/renxuanqiu/renxuanqiu.play';
+//功能组建
+import { sharesComponent } from '../playRule/shares/shares'
+import { guagualeParticipantsComponent } from '../playRule/guaguale-participants/guaguale-participants'
 @NgModule({
   declarations: [
     MyApp,
@@ -51,17 +65,32 @@ import {sharesComponent} from '../playRule/shares/shares'
     FucaiPage,
     GuagualePage,
     RedEnvelopePage,
+    //功能组建
+    sharesComponent,
+    guagualeParticipantsComponent,
+    //组件加载
     shuangseqiuComponent,
-    sharesComponent
+    daletouComponent,
+    pailie3Component,
+    pailie5Component,
+    qilecaiComponent,
+    qixingcaiComponent,
+    jingcaizuqiuComponent,
+    jingcailanqiuComponent,
+    shengfucaiComponent,
+    dingguaguaComponent,
+    fucaiComponent,
+    guagualeComponent,
+    renxuanqiuComponent
   ],
   imports: [
     HttpModule,
-    IonicModule.forRoot(MyApp,{
+    IonicModule.forRoot(MyApp, {
       backButtonText: '',
-      backButtonIcon:'arrow-back-outline',
-      mode:'ios'
+      backButtonIcon: 'arrow-back-outline',
+      mode: 'ios'
     }, {}
-  ),
+    ),
     InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   bootstrap: [IonicApp],
@@ -83,8 +112,23 @@ import {sharesComponent} from '../playRule/shares/shares'
     FucaiPage,
     GuagualePage,
     RedEnvelopePage,
+    //功能组建导入
+    sharesComponent,
+    guagualeParticipantsComponent,
+    //组建导入
     shuangseqiuComponent,
-    sharesComponent
+    daletouComponent,
+    pailie3Component,
+    pailie5Component,
+    qilecaiComponent,
+    qixingcaiComponent,
+    jingcaizuqiuComponent,
+    jingcailanqiuComponent,
+    shengfucaiComponent,
+    dingguaguaComponent,
+    fucaiComponent,
+    guagualeComponent,
+    renxuanqiuComponent
   ],
   providers: [
     BallService,

@@ -2,7 +2,7 @@
   <ion-col>
     <ion-row align-items-center>
       <ion-col class="ball" *ngFor="let ball of ballArray let i=index">
-        <div [ngClass]="{'red':i<6,'blue':i==6}">{{ball}}</div>
+        <div [ngClass]="{'red':i<5,'blue':i>=5}">{{ball}}</div>
       </ion-col>
       <ion-col col-2>
         <button ion-button round icon-only color="light" (click)="reset()">

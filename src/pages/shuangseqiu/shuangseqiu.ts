@@ -24,7 +24,7 @@ export class ShuangseqiuPage {
     this.lottery = this.navParams.get('page');
   }
   superaddition() {
-    this.superadditionArray.push(this.ball.creatBalls({ red: 33, blue: 12 }));
+    this.superadditionArray.push(this.ball.creatBalls({ red: 33, blue: 16 }));
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShuangseqiuPage');

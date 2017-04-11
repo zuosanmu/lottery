@@ -18,13 +18,20 @@ page-red-envelope {
         margin-top: 0;
         margin-bottom: 3px;
     }
-    ion-content {
-        background-color: #f0eff5 !important;
-    }
     ion-list {
         background-color: #fff;
     }
+    .scroll-content{
+      background: url('../../assets/images/sentbg.png') no-repeat left top;
+      background-size: contain;
+    }
     .redEnvelope {
         width: 80%;
+    }
+    .content-ios {
+        background-color: #f4ba3c;
+    }
+    .filler{
+      height: 18.8rem;
     }
 }

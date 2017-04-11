@@ -11,14 +11,14 @@ export class BallService {
   dltb: string[] = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
   constructor() { }
-  randomBall(num): any {
+  randomBall(num:number): string[] {
     if ((num) > 16) {
       return num == 33 ? this.ssq.sort(() => Math.random() - 0.5).slice(0, 6) : this.dlt.sort(() => Math.random() - 0.5).slice(0, 5);
     } else {
-      return num == 12 ? this.ssqb.sort(() => Math.random() - 0.5).slice(0, 2) : this.dltb.sort(() => Math.random() - 0.5).slice(0, 1);
+      return num == 12 ? this.dltb.sort(() => Math.random() - 0.5).slice(0, 2) : this.ssqb.sort(() => Math.random() - 0.5).slice(0, 1);
     }
   }
-  forLoop = (red, blue) => this.randomBall(red).concat(this.randomBall(blue));
+  forLoop = (red:number, blue:number) => this.randomBall(red).concat(this.randomBall(blue));
   creatBalls = (person) => this.forLoop(person.red, person.blue);
 
 }

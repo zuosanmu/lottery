@@ -46,6 +46,9 @@ export class RedEnvelopePage implements OnInit {
   receiveshuangseqiu(msg: string[]) {
     this.ballArray = msg;
   }
+  receivedaletou(msg: string[]) {
+    this.ballArray = msg;
+  }
   goToDetails(page): void {
     let detailPage;
     switch (page.id) {

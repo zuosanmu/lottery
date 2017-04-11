@@ -20,7 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
         current: 4,
         total: 4,
       },
-      {
+      /*{
         id: 3,
         name: '排列3',
         issue: '20170228', shareTime: '01-05 12:27:31',
@@ -91,7 +91,7 @@ export class InMemoryDataService implements InMemoryDbService {
         awardAmount: 22000,
         current: 1,
         total: 10,
-      },
+      },*/
       {
         id: 12,
         name: '刮刮乐',
@@ -99,7 +99,7 @@ export class InMemoryDataService implements InMemoryDbService {
         awardAmount: 22000,
         current: 1,
         total: 10,
-      },
+      },/*
       {
         id: 13,
         name: '任选9',
@@ -107,7 +107,7 @@ export class InMemoryDataService implements InMemoryDbService {
         awardAmount: 22000,
         current: 1,
         total: 10,
-      }
+      }*/
     ];
 
     return { lotteries };

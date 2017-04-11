@@ -1,5 +1,5 @@
 page-shuangseqiu {
-     p {
+    p {
         line-height: 29px;
         &.title {
             line-height: 14px;
@@ -24,46 +24,52 @@ page-shuangseqiu {
     ion-list {
         background-color: #fff;
     }
-    .ball{
-      display: block;
-         line-height: 22px;
-       text-align: center;
-      width: 22px;
-            height: 22px;
-            color: #FFF;
-            background: url('../../assets/images/red.png') no-repeat center;
-            background-size: 100%;
-        }
-    .ballRow{
-      margin:5px 0;
+    .ball {
+        display: block;
+        line-height: 22px;
+        text-align: center;
+        width: 22px;
+        height: 22px;
+        color: #FFF;
+        background: no-repeat center;
+        background-size: 100%;
     }
-    #multiple{
-      width: 100%;
-      background-color:#f4f4f4;
-      border: none;
-      outline: none;
-      height: 36px;
-      text-align: center;
+    .red {
+        background-image: url('../../assets/images/red.png');
     }
-    .multipleBtn{
-      width: 100%;
-      background-color: #f8f8f8;
-      color: #222;
-      font-weight: bold;
-      box-shadow: 0 0 0 0;
+    .blue {
+        background-image: url('../../assets/images/blue.png');
     }
-    .fontWeight{
-      font-weight: bold;
-      color: #222;
+    .ballRow {
+        margin: 5px 0;
     }
-    .noFontWeight{
-      font-weight: 100;
+    #multiple {
+        width: 100%;
+        background-color: #f4f4f4;
+        border: none;
+        outline: none;
+        height: 36px;
+        text-align: center;
     }
-    .balance{
-      font-size: 16px;
+    .multipleBtn {
+        width: 100%;
+        background-color: #f8f8f8;
+        color: #222;
+        font-weight: bold;
+        box-shadow: 0 0 0 0;
     }
-    .addBtn{
-      width: 24px;
-      height: 24px;
+    .fontWeight {
+        font-weight: bold;
+        color: #222;
+    }
+    .noFontWeight {
+        font-weight: 100;
+    }
+    .balance {
+        font-size: 16px;
+    }
+    .addBtn {
+        width: 24px;
+        height: 24px;
     }
 }

@@ -5,39 +5,55 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar>
-        <ion-title text-center>
-            发红包
-        </ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title text-center>
+      发红包
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let lottery of lotteries">
-        <ion-grid>
-            <ion-row>
-                <ion-col col-2>
-                    <img src="../../assets/images/{{lottery.id}}.png" width="50px">
-                    <p class="title">{{lottery.name}}</p>
-                </ion-col>
-                <ion-col col-10>
-                    <ion-row>
-                        <ion-col col-7 class="no-padding-t">
-                            <h5>第{{lottery.issue}}期</h5>
-                        </ion-col>
-                        <ion-col col-5 class="no-padding-t">
-                            {{lottery.shareTime}}
-                        </ion-col>
-                    </ion-row>
-                    <shuangseqiu (outer)="receiveshuangseqiu($event)" ></shuangseqiu>
-                </ion-col>
-            </ion-row>
-            <ion-row class="border-top-yellow">
-                <ion-col col-1></ion-col>
-                <ion-col col-10><button ion-button block small color="danger" (click)="goToDetails(lottery)">我也要发</button></ion-col>
-                <ion-col col-1></ion-col>
-            </ion-row>
-        </ion-grid>
+  <div class="filler">
+  </div>
+  <ion-card *ngFor="let lottery of lotteries">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="../../assets/images/{{lottery.id}}.png" width="50px">
+          <p class="title">{{lottery.name}}</p>
+        </ion-col>
+        <ion-col col-10>
+          <ion-row>
+            <ion-col col-7 class="no-padding-t">
+              <h5>第{{lottery.issue}}期</h5>
+            </ion-col>
+            <ion-col col-5 class="no-padding-t">
+              {{lottery.shareTime}}
+            </ion-col>
+          </ion-row>
+          <div [ngSwitch]="lottery.id">
+            <shuangseqiu *ngSwitchCase="1" (outershuangseqiu)="receiveshuangseqiu($event)"></shuangseqiu>
+            <daletou *ngSwitchCase="2" (outerdaletou)="receivedaletou($event)"></daletou>
+            <!--<pailie3 *ngSwitchCase="3" (outerpailie3)="receivepailie3($event)"></pailie3>
+            <pailie5 *ngSwitchCase="4" (outerpailie5)="receivepailie5($event)"></pailie5>
+            <qilecai *ngSwitchCase="5" (outerqilecai)="receiveqilecai($event)"></qilecai>
+            <qixingcai *ngSwitchCase="6" (outerqixingcai)="receiveqixingcai($event)"></qixingcai>
+            <jingcailanqiu *ngSwitchCase="7" (outerjingcailanqiu)="receivejingcailanqiu($event)"></jingcailanqiu>
+            <jingcailanqiu *ngSwitchCase="8" (outerjingcailanqiu)="receivejingcailanqiu($event)"></jingcailanqiu>
+            <shengfucai *ngSwitchCase="9" (outershengfucai)="receiveshengfucai($event)"></shengfucai>
+            <dingguagua *ngSwitchCase="10" (outerdingguagua)="receivedingguagua($event)"></dingguagua>
+            <fucai *ngSwitchCase="11" (outerfucai)="receivefucai($event)"></fucai>
+            <guaguale *ngSwitchCase="12" (outerguaguale)="receiveguaguale($event)"></guaguale>
+            <renxuanqiu *ngSwitchCase="13" (outerrenxuanqiu)="receiverenxuanqiu($event)"></renxuanqiu>-->
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="border-top-yellow">
+        <ion-col col-1></ion-col>
+        <ion-col col-10><button ion-button block small color="danger" (click)="goToDetails(lottery)">我也要发</button></ion-col>
+        <ion-col col-1></ion-col>
+      </ion-row>
+    </ion-grid>
 
-    </ion-card>
+  </ion-card>
 </ion-content>

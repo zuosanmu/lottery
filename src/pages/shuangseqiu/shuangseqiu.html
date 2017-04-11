@@ -32,15 +32,15 @@
           <ion-row>
             <ion-col col-10>
               <ion-row class="ballRow">
-                <ion-col no-padding *ngFor="let ball of lottery.number">
-                  <span class="ball">
+                <ion-col no-padding *ngFor="let ball of lottery.number;let i = last">
+                  <span [ngClass]="{'ball':true,'red':!i,'blue':i}">
                   {{ball}}
                 </span>
                 </ion-col>
               </ion-row>
               <ion-row class="ballRow" *ngFor="let item of superadditionArray">
-                <ion-col no-padding *ngFor="let ball of item">
-                  <span class="ball">
+                <ion-col no-padding *ngFor="let ball of item;let i = index">
+                  <span [ngClass]="{'ball':true,'red':i<6,'blue':i==6}" >
                   {{ball}}
                 </span>
                 </ion-col>

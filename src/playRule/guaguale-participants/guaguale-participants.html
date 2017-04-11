@@ -1,0 +1,23 @@
+<ion-row>
+  <ion-col col-12>
+    <h2>请选择要赠送的人数:</h2>
+  </ion-col>
+  <ion-col text-center>
+    <button ion-button small [outline]="isTwo" color="danger" (click)="setcount(2)">2 人</button>
+  </ion-col>
+  <ion-col text-center>
+    <button ion-button small [outline]="isThree" color="danger" (click)="setcount(3)">3 人</button>
+  </ion-col>
+  <ion-col text-center>
+    <button ion-button small [outline]="isFive" color="danger" (click)="setcount(5)">5 人</button>
+  </ion-col>
+  <ion-col text-center>
+    <button ion-button small [outline]="isTen" color="danger" (click)="setcount(10)">10人</button>
+  </ion-col>
+  <ion-col text-center>
+    <button ion-button small [outline]="isTwenty" color="danger" (click)="setcount(20)">20人</button>
+  </ion-col>
+  <ion-col text-center>
+    <button ion-button small [outline]="isThirty" color="danger" (click)="setcount(30)">30人</button>
+  </ion-col>
+</ion-row>
