@@ -29,6 +29,7 @@ import { GuagualePage } from '../guaguale/guaguale';
 export class RedEnvelopePage implements OnInit {
   lotteries: Lottery[];
   ballArray: string[];
+  participants: number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -46,6 +47,9 @@ export class RedEnvelopePage implements OnInit {
   receiveshuangseqiu(msg: string[]) {
     this.ballArray = msg;
   }
+  receiveguaguale(msg: number) {
+    this.participants = msg;
+  }
   receivedaletou(msg: string[]) {
     this.ballArray = msg;
   }
@@ -57,6 +61,7 @@ export class RedEnvelopePage implements OnInit {
         detailPage = ShuangseqiuPage;
         break;
       case 2:
+        page.number = this.ballArray;
         detailPage = DaletouPage;
         break;
       case 3:
@@ -87,6 +92,7 @@ export class RedEnvelopePage implements OnInit {
         detailPage = FucaiPage;
         break;
       case 12:
+        page.participants = this.participants;
         detailPage = GuagualePage;
         break;
       case 13:

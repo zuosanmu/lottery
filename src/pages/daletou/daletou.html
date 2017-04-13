@@ -4,15 +4,94 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
+<ion-header no-border>
   <ion-navbar>
-    <ion-title>daletou</ion-title>
+    <ion-title>
+      发红包
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <img src="../../assets/images/{{lottery.id}}.png" width="50px">
+          <p class="title">{{lottery.name}}</p>
+        </ion-col>
+        <ion-col col-10>
+          <ion-row>
+            <ion-col col-7 class="no-padding-t">
+              <h5>第{{lottery.issue}}期</h5>
+            </ion-col>
+            <ion-col col-5 class="no-padding-t">
+              {{lottery.shareTime}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-10>
+              <ion-row class="ballRow">
+                <ion-col no-padding *ngFor="let ball of lottery.number;let i = index">
+                  <span [ngClass]="{'ball':true,'red':i<5,'blue':i>=5}">
+                  {{ball}}
+                </span>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ballRow" *ngFor="let item of superadditionArray">
+                <ion-col no-padding *ngFor="let ball of item;let i = index">
+                  <span [ngClass]="{'ball':true,'red':i<5,'blue':i>=5}">
+                  {{ball}}
+                </span>
+                </ion-col>
+              </ion-row>
+              <button ion-button round icon-only color="light" class="addBtn" (click)="superaddition()">
+                    <ion-icon ios="ios-add-circle-outline" md="md-add"></ion-icon>
+                </button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <shares (shares)="receiveCount($event)" class="border-top-yellow"></shares>
+      <ion-row class="border-top-yellow">
+        <ion-col class="balance">账号余额: <span color="danger" >¥{{balance}}</span> </ion-col>
+        <ion-col text-center>{{superadditionArray.length+1}}注{{multiple}}倍{{(superadditionArray.length+1)*multiple*2}}元</ion-col>
+      </ion-row>
+    </ion-grid>
 
-<ion-content padding>
-
+  </ion-card>
 </ion-content>
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row align-items-center>
+        <ion-col text-right col-4 no-padding class="fontWeight">
+          倍
+        </ion-col>
+        <ion-col col-1 no-padding>
+          <button ion-button icon-only color="light" (click)="multiple=(multiple>1?multiple-1:multiple)"   class="multipleBtn">
+             <ion-icon ios="ios-remove-outline" md="md-remove"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-2 no-padding>
+          <input id="multiple" type="number" required [(ngModel)]="multiple">
+        </ion-col>
+        <ion-col col-1 no-padding>
+          <button ion-button icon-only color="light" (click)="multiple=multiple+1" class="multipleBtn">
+              <ion-icon ios="ios-add-outline" md="md-add"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col text-left col-4 no-padding class="fontWeight">
+          投
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-10>
+          <button ion-button block color="danger">付款</button>
+        </ion-col>
+        <ion-col col-1></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,3 +1,60 @@
 page-guaguale {
+p {
+        line-height: 29px;
+        &.title {
+            line-height: 14px;
+            margin-top: 7px;
+            text-align: center;
+            color: #222;
+        }
+        &.bottom {
+            line-height: 14px;
+            margin-top: 7px;
+        }
+    }
+    h5 {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        margin-top: 0;
+        margin-bottom: 3px;
+    }
+    ion-content {
+        background-color: #f0eff5 !important;
+    }
+    ion-list {
+        background-color: #fff;
+    }
 
+   .guaguacai{
+     font-size: 1.8rem;
+   }
+    #multiple {
+        width: 100%;
+        background-color: #f4f4f4;
+        border: none;
+        outline: none;
+        height: 36px;
+        text-align: center;
+    }
+    .multipleBtn {
+        width: 100%;
+        background-color: #f8f8f8;
+        color: #222;
+        font-weight: bold;
+        box-shadow: 0 0 0 0;
+    }
+    .fontWeight {
+        font-weight: bold;
+        color: #222;
+    }
+    .noFontWeight {
+        font-weight: 100;
+    }
+    .balance {
+        font-size: 16px;
+    }
+    .addBtn {
+        width: 24px;
+        height: 24px;
+    }
 }

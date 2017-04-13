@@ -67,7 +67,6 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     RedEnvelopePage,
     //功能组建
     sharesComponent,
-    guagualeParticipantsComponent,
     //组件加载
     shuangseqiuComponent,
     daletouComponent,
@@ -114,7 +113,6 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     RedEnvelopePage,
     //功能组建导入
     sharesComponent,
-    guagualeParticipantsComponent,
     //组建导入
     shuangseqiuComponent,
     daletouComponent,

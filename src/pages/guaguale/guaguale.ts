@@ -12,11 +12,20 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'guaguale.html'
 })
 export class GuagualePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GuagualePage');
+  private lottery;
+  private count;
+  private multiple: number = 1;
+  private balance: string = '100.00';
+  private classify:string ='中国红';
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams) {
+    this.lottery = this.navParams.get('page');
   }
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ShuangseqiuPage');
+  }
+  receiveCount(msg: number) {
+    this.count = msg;
+  }
 }

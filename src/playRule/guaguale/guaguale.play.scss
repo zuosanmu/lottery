@@ -1,26 +1,6 @@
 guaguale {
-    .ball {
-        padding: 2px;
-        div {
-            line-height: 22px;
-            text-align: center;
-            width: 22px;
-            height: 22px;
-            color: #FFF;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-        }
-        .red {
-            background-image: url('../../assets/images/red.png');
-        }
-        .blue {
-            background-image: url('../../assets/images/blue.png');
-        }
-    }
-    button {
-        width: 32px;
-        height: 32px !important;
-        margin: 0px !important;
-    }
+  .button-small-ios{
+    padding: 0 0.4em;
+    width: 100%;
+  }
 }
