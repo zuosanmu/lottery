@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class LotteryService {
   private heroesUrl = 'api/lotteries';
-  private headers = new Headers({ 'Content-Type': 'text/plain;charset=UTF-8' });
+  private headers = new Headers({ 'Content-Type': 'text/plain' });
   constructor(private http: Http) { }
   getHeroes(): Promise<Lottery[]> {
     return this.http.get(this.heroesUrl)
