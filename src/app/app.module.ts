@@ -29,6 +29,7 @@ import { ShuangseqiuPage } from '../pages/shuangseqiu/shuangseqiu';
 import { FucaiPage } from '../pages/fucai/fucai';
 import { GuagualePage } from '../pages/guaguale/guaguale';
 import { RedEnvelopePage } from '../pages/red-envelope/red-envelope';
+import { LoginPage } from "../pages/login/login";
 //加载组建
 import { shuangseqiuComponent } from '../playRule/shuangseqiu/shuangseqiu.play';
 import { daletouComponent } from '../playRule/daletou/daletou.play';
@@ -65,6 +66,7 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     FucaiPage,
     GuagualePage,
     RedEnvelopePage,
+    LoginPage,
     //功能组建
     sharesComponent,
     //组件加载
@@ -88,8 +90,13 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
       backButtonText: '',
       backButtonIcon: 'arrow-back-outline',
       mode: 'ios'
-    }, {}
+    },{
+      links:[
+        {component: LoginPage, name: 'Login', segment: 'Login' }
+      ]
+    }
     ),
+    // IonicPageModule.forChild(LoginPage,{}),
     InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   bootstrap: [IonicApp],
@@ -111,6 +118,7 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     FucaiPage,
     GuagualePage,
     RedEnvelopePage,
+    LoginPage,
     //功能组建导入
     sharesComponent,
     //组建导入

@@ -1,0 +1,54 @@
+page-login {
+    .inputHeight {
+        border: none;
+        outline: none;
+        height: 3rem;
+        width: 100%;
+        font-size: 1.6rem;
+        background-color: #f53b2f;
+        color: #fff;
+    }
+    .w99 {
+        width: 95% !important;
+    }
+    .content-ios {
+        color: #fff;
+        background-color: #f53b2f;
+    }
+    .scroll-content {
+        background: url('../../assets/images/loginbg.png') no-repeat left bottom;
+        background-size: contain;
+    }
+    .border {
+        border-bottom: 1px solid #fff;
+    }
+    .borderl {
+        border-left: 1px solid #fff;
+    }
+    .button-ios {
+        height: 3rem;
+    }
+    .heng {
+        font-size: 2.8rem !important;
+        line-height: 1.8rem;
+        color: #fff;
+    }
+    .full {
+        height: 10rem;
+    }
+    input::-webkit-input-placeholder {
+        color: #fff !important;
+    }
+    input:-moz-placeholder {
+        color: #fff !important;
+    }
+    input::-moz-placeholder {
+        color: #fff !important;
+    }
+    input:-ms-input-placeholder {
+        color: #fff !important;
+    }
+    .login{
+       color: #f53b2f;
+    }
+}
