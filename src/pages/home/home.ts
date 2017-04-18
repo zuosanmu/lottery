@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Broadcaster } from  '@ionic-native/broadcaster';
 import { NavController } from 'ionic-angular';
 //模拟数据
 import { Lottery } from '../../format/lottery';
@@ -30,7 +30,8 @@ export class HomePage implements OnInit {
   private
   constructor(
     public navCtrl: NavController,
-    private lotteryService: LotteryService) {
+    private lotteryService: LotteryService,
+    private broadcaster: Broadcaster) {
 
   }
   getLotteries(): void {
@@ -38,12 +39,20 @@ export class HomePage implements OnInit {
   }
   ngOnInit() {
     this.getLotteries();
+    this.getIdentity('');
   }
   goToDetails(page): void {
-    this.navCtrl.push(DetailPage, {page});
+    this.navCtrl.push(DetailPage, { page });
   }
   goToSent(): void {
     this.navCtrl.push(RedEnvelopePage, {});
   }
-
+  getIdentity(data) {
+    console.log(data);
+  }
+  fireNative(message){
+    // Send event to Native
+    console.log('send to native', message);
+    this.broadcaster.fireNativeEvent('testNative', {item: message}).then(() => console.log('success'));
+  }
 }

@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
-
+import { Broadcaster } from  '@ionic-native/broadcaster';
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from '../mock/in-memory-data.service';
@@ -96,8 +96,7 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
       ]
     }
     ),
-    // IonicPageModule.forChild(LoginPage,{}),
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -139,6 +138,7 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
   providers: [
     BallService,
     LotteryService,
+    Broadcaster,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }

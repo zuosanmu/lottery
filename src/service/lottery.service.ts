@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class LotteryService {
   private heroesUrl = 'api/lotteries';
-  private headers = new Headers({ 'Content-Type': 'text/plain' });
+  private headers = new Headers({ 'Content-Type': 'text/plain;charset=UTF-8' });
   constructor(private http: Http) { }
   getHeroes(): Promise<Lottery[]> {
     return this.http.get(this.heroesUrl)
@@ -40,18 +40,34 @@ export class LotteryService {
       .then(() => hero)
       .catch(this.handleError);
   }
-  create(name:string):Promise<Lottery>{
+  create(name: string): Promise<Lottery> {
     return this.http
-    .post(this.heroesUrl,JSON.stringify({name:name}),{headers:this.headers})
-    .toPromise()
-    .then(res=>res.json().data)
-    .catch(this.handleError);
+      .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
   }
-  delete(id:number):Promise<void>{
+  delete(id: number): Promise<void> {
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.delete(url,{headers:this.headers})
-    .toPromise()
-    .then(()=>null)
-    .catch(this.handleError);
+    return this.http.delete(url, { headers: this.headers })
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
   }
+  // lot() {
+  //   return this.http
+  //     .post('http://139.224.195.129:80/rainstorm/',
+  //     {
+  //       site_id: null,
+  //       phone: 15386621607,
+  //       verification_code: 1000203,
+  //       device_token: null
+  //     }, { headers: this.headers })
+  //     .subscribe(
+  //     hero => this.heroes.push(hero),
+  //     error => this.errorMessage = <any>error);
+    // .toPromise()
+    // .then(res => res.json().data)
+    // .catch();
+  // }
 }
