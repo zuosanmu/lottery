@@ -12,3 +12,6 @@
   https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 */
 declare module '*';
+declare var sharesdk: any;
+declare var ShareSDK: any;
+declare var Wechat;

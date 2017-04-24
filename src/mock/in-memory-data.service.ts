@@ -11,6 +11,28 @@ export class InMemoryDataService implements InMemoryDbService {
         awardAmount: 500000,
         current: 1,
         total: 10,
+        participator:[
+          {
+            name:'张三',
+            percent:12,
+            time:'2017-4-17'
+          },
+          {
+            name:'李四',
+            percent:30,
+            time:'2017-04-7'
+          },
+          {
+            name:'王五',
+            percent:1,
+            time:'2017-04-7'
+          },
+          {
+            name:'赵六',
+            percent:2,
+            time:'2017-04-7'
+          },
+        ]
       },
       {
         id: 2,
@@ -19,6 +41,28 @@ export class InMemoryDataService implements InMemoryDbService {
         awardAmount: 500000,
         current: 4,
         total: 4,
+        participator:[
+          {
+            name:'张三',
+            percent:12,
+            time:'2017-4-17'
+          },
+          {
+            name:'李四',
+            percent:30,
+            time:'2017-04-7'
+          },
+          {
+            name:'王五',
+            percent:1,
+            time:'2017-04-7'
+          },
+          {
+            name:'赵六',
+            percent:2,
+            time:'2017-04-7'
+          },
+        ]
       },
       /*{
         id: 3,
@@ -99,6 +143,28 @@ export class InMemoryDataService implements InMemoryDbService {
         awardAmount: 22000,
         current: 1,
         total: 10,
+        participator:[
+          {
+            name:'张三',
+            percent:12,
+            time:'2017-4-17'
+          },
+          {
+            name:'李四',
+            percent:30,
+            time:'2017-04-7'
+          },
+          {
+            name:'王五',
+            percent:1,
+            time:'2017-04-7'
+          },
+          {
+            name:'赵六',
+            percent:2,
+            time:'2017-04-7'
+          },
+        ]
       },/*
       {
         id: 13,

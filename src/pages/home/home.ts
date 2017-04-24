@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Broadcaster } from  '@ionic-native/broadcaster';
+import { Broadcaster } from '@ionic-native/broadcaster';
 import { NavController } from 'ionic-angular';
 //模拟数据
 import { Lottery } from '../../format/lottery';
@@ -35,7 +35,17 @@ export class HomePage implements OnInit {
 
   }
   getLotteries(): void {
-    this.lotteryService.getHeroes().then(lotteries => this.lotteries = lotteries)
+    this.lotteryService.getPost({
+    "req": "get_red_participation",
+    "content": {
+    	'offset':1
+    }
+}
+,
+      'android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cjk48ctx5mlfliaut1qb5to6s5vugrs83bwvmgs')
+      .subscribe(lotteries =>
+        this.lotteries = JSON.parse(lotteries._body).content.envelope_list
+      );
   }
   ngOnInit() {
     this.getLotteries();
@@ -50,9 +60,9 @@ export class HomePage implements OnInit {
   getIdentity(data) {
     console.log(data);
   }
-  fireNative(message){
+  fireNative(message) {
     // Send event to Native
     console.log('send to native', message);
-    this.broadcaster.fireNativeEvent('testNative', {item: message}).then(() => console.log('success'));
+    this.broadcaster.fireNativeEvent('testNative', { item: message }).then(() => console.log('success'));
   }
 }

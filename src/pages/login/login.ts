@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Headers, Http, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { LotteryService } from '../../service/lottery.service';
-
 /*
   Generated class for the Login page.
 
@@ -16,53 +13,41 @@ import { LotteryService } from '../../service/lottery.service';
 })
 export class LoginPage {
   private token;
-  private headers = new Headers({
-    'Content-Type': 'text/plain;charset=UTF-8',
-    'Cookie': 'android|user|5.2.1|000|proc|'
-  });
-  private options;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private lotteryService: LotteryService,
-    public http: Http,
-    public requestoptions: RequestOptions) {
-    this.options = new RequestOptions({
-      headers: this.headers,
-      withCredentials: true
-    });
+  ) {
+    // document.cookie = "android|user|1.0.0|000|proc|";
+    // // this._cookieService.put('Cookie','android|user|5.2.1|000|proc|');
+    // // this.headers.append('Cookie', 'android|user|5.2.1|000|proc|');
+    // this.headers = new Headers({
+    //   'Content-Type': 'text/plain;charset=UTF-8',
+    //   'envelope':"android|user|1.0.0|000|proc|"
+    // });
+    // this.options = new RequestOptions({
+    //   headers: this.headers,
+    //   withCredentials: true
+    // });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
   getToken(): void {
-    this.http
-      .post('http://139.224.195.129:80/rainstorm/start',
-      {
+  this.lotteryService.getPost( {
         "req": "login",
         "content": {
+          "site_id":1000003,
           "phone": 18615718184,
           "verification_code": 9237,
           "device_token": "sdf4443"
         }
-      }
-      ,
-      this.options)
-      .map(res => {
-        return res;
-      })
+      }, 'android|user|1.0.0|000|proc|')
       .subscribe(
       data => {
         this.token = data;
-        alert(data);
       }
       )
-    //   this.http().then(res =>
-    //   {
-    //     this.token = res;
-    //     console.log(this.token);
-    //   }
-    //   )
   }
 }

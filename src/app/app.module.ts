@@ -2,11 +2,11 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
-import { Broadcaster } from  '@ionic-native/broadcaster';
+import { Broadcaster } from '@ionic-native/broadcaster';
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from '../mock/in-memory-data.service';
-
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //引用的服务
@@ -30,6 +30,8 @@ import { FucaiPage } from '../pages/fucai/fucai';
 import { GuagualePage } from '../pages/guaguale/guaguale';
 import { RedEnvelopePage } from '../pages/red-envelope/red-envelope';
 import { LoginPage } from "../pages/login/login";
+import { detailwebPage } from '../pages/detailweb/detailweb';
+import { LotteryListPage } from '../pages/lottery-list/lottery-list';
 //加载组建
 import { shuangseqiuComponent } from '../playRule/shuangseqiu/shuangseqiu.play';
 import { daletouComponent } from '../playRule/daletou/daletou.play';
@@ -45,8 +47,9 @@ import { fucaiComponent } from '../playRule/fucai/fucai.play';
 import { guagualeComponent } from '../playRule/guaguale/guaguale.play';
 import { renxuanqiuComponent } from '../playRule/renxuanqiu/renxuanqiu.play';
 //功能组建
-import { sharesComponent } from '../playRule/shares/shares'
-import { guagualeParticipantsComponent } from '../playRule/guaguale-participants/guaguale-participants'
+import { sharesComponent } from '../playRule/shares/shares';
+import { bottonClickDirective } from '../directive/button.click';
+import { guagualeParticipantsComponent } from '../playRule/guaguale-participants/guaguale-participants';
 @NgModule({
   declarations: [
     MyApp,
@@ -67,6 +70,7 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     GuagualePage,
     RedEnvelopePage,
     LoginPage,
+    detailwebPage,
     //功能组建
     sharesComponent,
     //组件加载
@@ -82,7 +86,10 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     dingguaguaComponent,
     fucaiComponent,
     guagualeComponent,
-    renxuanqiuComponent
+    renxuanqiuComponent,
+    //暂时没有用到的
+    bottonClickDirective,
+    LotteryListPage,
   ],
   imports: [
     HttpModule,
@@ -90,11 +97,12 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
       backButtonText: '',
       backButtonIcon: 'arrow-back-outline',
       mode: 'ios'
-    },{
-      links:[
-        {component: LoginPage, name: 'Login', segment: 'Login' }
-      ]
-    }
+    }, {
+        links: [
+          { component: LoginPage, name: 'Login', segment: 'Login' },
+          { component: detailwebPage, name: 'detailweb', segment: 'detailweb' },
+        ]
+      }
     ),
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
@@ -118,6 +126,7 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     GuagualePage,
     RedEnvelopePage,
     LoginPage,
+    detailwebPage,
     //功能组建导入
     sharesComponent,
     //组建导入
@@ -133,13 +142,17 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     dingguaguaComponent,
     fucaiComponent,
     guagualeComponent,
-    renxuanqiuComponent
+    renxuanqiuComponent,
+    //暂时没有用到的
+    // bottonClickDirective,
+    LotteryListPage,
   ],
   providers: [
     BallService,
     LotteryService,
     Broadcaster,
     StatusBar,
+    CookieService,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

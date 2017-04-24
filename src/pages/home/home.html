@@ -1,4 +1,4 @@
-<ion-header no-border>
+<ion-header>
     <ion-navbar>
         <ion-title text-center>
             福利天天送
@@ -11,25 +11,25 @@
         <ion-grid>
             <ion-row>
                 <ion-col col-3>
-                    <img src="../../assets/images/{{lottery.id}}.png" width="50px">
+                    <img src="{{lottery.icon_url}}" width="50px">
                     <p class="title">{{lottery.name}}</p>
                 </ion-col>
                 <ion-col col-6>
                     <section>
-                        <h5>第{{lottery.issue}}期</h5>
-                        <p color="danger">{{lottery.awardAmount}}元</p>
-                        <p class="bottom">{{lottery.current}}/{{lottery.total}}人</p>
+                        <h5>第{{lottery.issue_no}}期</h5>
+                        <p color="danger">{{lottery.amount}}元</p>
+                        <p class="bottom">{{schedule}}人</p>
                     </section>
                 </ion-col>
                 <ion-col col-3 align-self-end>
-                    <button ion-button [color]="lottery.current !== lottery.total? 'danger' : 'light'" (click)="goToDetails(lottery)">{{lottery.current !== lottery.total? '立即抢' : '已抢完'}}</button>
+                    <button ion-button [color]="receive_status? 'danger' : 'light'" (click)="goToDetails(lottery)">{{receive_status? '立即抢' : '已领取'}}</button>
                 </ion-col>
             </ion-row>
         </ion-grid>
 
     </ion-list>
 </ion-content>
-<ion-footer no-border>
+<ion-footer>
     <ion-toolbar>
         <ion-grid>
             <ion-row>
