@@ -19,21 +19,21 @@
     <ion-grid>
       <ion-row>
         <ion-col col-2>
-          <img src="assets/images/{{lottery.id}}.png" width="50px">
-          <p class="title">{{lottery.name}}</p>
+          <img src={{lottery.icon_url}} width="50px">
+          <!--<p class="title">{{lottery.title}}</p>-->
         </ion-col>
         <ion-col col-10>
           <ion-row>
             <ion-col col-7 class="no-padding-t">
-              <h5>第{{lottery.issue}}期</h5>
+              <h5>第{{lottery.issue_no}}期</h5>
             </ion-col>
             <ion-col col-5 class="no-padding-t">
-              {{lottery.shareTime}}
+              {{lottery.purchase_cut_off_time}}
             </ion-col>
           </ion-row>
-          <div [ngSwitch]="lottery.id">
-            <shuangseqiu *ngSwitchCase="1" (outershuangseqiu)="receiveshuangseqiu($event)"></shuangseqiu>
-            <daletou *ngSwitchCase="2" (outerdaletou)="receivedaletou($event)"></daletou>
+          <div [ngSwitch]="lottery.lottery_type">
+            <shuangseqiu *ngSwitchCase="'_ssq'" (outershuangseqiu)="receiveshuangseqiu($event)"></shuangseqiu>
+            <daletou *ngSwitchCase="'_dlt'" (outerdaletou)="receivedaletou($event)"></daletou>
             <!--<pailie3 *ngSwitchCase="3" (outerpailie3)="receivepailie3($event)"></pailie3>
             <pailie5 *ngSwitchCase="4" (outerpailie5)="receivepailie5($event)"></pailie5>
             <qilecai *ngSwitchCase="5" (outerqilecai)="receiveqilecai($event)"></qilecai>
@@ -41,9 +41,12 @@
             <jingcailanqiu *ngSwitchCase="7" (outerjingcailanqiu)="receivejingcailanqiu($event)"></jingcailanqiu>
             <jingcailanqiu *ngSwitchCase="8" (outerjingcailanqiu)="receivejingcailanqiu($event)"></jingcailanqiu>
             <shengfucai *ngSwitchCase="9" (outershengfucai)="receiveshengfucai($event)"></shengfucai>
-            <dingguagua *ngSwitchCase="10" (outerdingguagua)="receivedingguagua($event)"></dingguagua>
+            -->
+            <!--<dingguagua *ngSwitchCase="_dgg" (outerdingguagua)="receivedingguagua($event)"></dingguagua>-->
+            <!--
             <fucai *ngSwitchCase="11" (outerfucai)="receivefucai($event)"></fucai>-->
-            <guaguale *ngSwitchCase="12" (outerguaguale)="receiveguaguale($event)"></guaguale>
+            <guaguale *ngSwitchCase="'_ggl'" (outerguaguale)="receiveguaguale($event)"></guaguale>
+            <guaguale *ngSwitchCase="'_dgg'" (outerguaguale)="receiveguaguale($event)"></guaguale>
             <!--<renxuanqiu *ngSwitchCase="13" (outerrenxuanqiu)="receiverenxuanqiu($event)"></renxuanqiu>-->
           </div>
         </ion-col>

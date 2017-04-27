@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, LoadingController } from 'ionic-angular';
-import { BallService } from '../../service/ball.service';
+import { LotteryService } from '../../service/lottery.service';
 /*
   Generated class for the Detail page.
 
@@ -11,16 +11,36 @@ import { BallService } from '../../service/ball.service';
   selector: 'page-detail',
   templateUrl: 'detail.html'
 })
-export class DetailPage {
-  private lottery;
+export class DetailPage implements OnInit {
+  public lottery;
+  public detail={
+    amount: 1,
+  attend_info_list: [{}],
+  bet_count: 1,
+  bet_number: 1,
+  envelope_create_time: 'a',
+  icon_url: 'string',
+  issue_no: 1,
+  lottery_order_list:[{}],
+  lottery_type: 'string',
+  need_person: 1,
+  purchase_cut_off_time: 'string',
+  receive_status: false,
+  sponsor: "string",
+  title: 'string'
+  };
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public actionSheetCtrl: ActionSheetController,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public LotteryService: LotteryService
   ) {
     this.lottery = this.navParams.get('page');
+  }
+  ngOnInit(){
+    this.getDetailData();
   }
   presentLoadingDefault() {
     let loading = this.loadingCtrl.create({
@@ -82,16 +102,34 @@ export class DetailPage {
   presentConfirm() {
     this.navCtrl.popToRoot();
   }
-//   test(){
-//   Wechat.share({
-//     text: "This is just a plain string",
-//     scene: Wechat.Scene.TIMELINE   // share to Timeline
-//   }, function () {
-//     alert("Success");
-//   }, function (reason) {
-//     alert("Failed: " + reason);
-//   });
-// }
+  //   test(){
+  //   Wechat.share({
+  //     text: "This is just a plain string",
+  //     scene: Wechat.Scene.TIMELINE   // share to Timeline
+  //   }, function () {
+  //     alert("Success");
+  //   }, function (reason) {
+  //     alert("Failed: " + reason);
+  //   });
+  // }
+
+  //向后台申请数据
+  getDetailData() {
+    this.LotteryService.getPost({
+      "req": "envelope_bet_info",
+      "content": {
+        'order_no':this.lottery.order_no,
+        'lottery_type':this.lottery.lottery_type
+      }
+    }, 'android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cjk48ctx5mlfliaut1qb5to6s5vugrs83bwvmgs')
+     .subscribe(data => {
+        this.detail =JSON.parse(data['_body']).content;
+        //  JSON.parse(lotteries._body).content.envelope_list;
+        console.log(this.detail);
+      }
+      );
+  }
+  //微信分享
   shareWechat() {
     // Wechat.share({
     //   text: "This is just a plain string",

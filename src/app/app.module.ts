@@ -3,10 +3,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { Broadcaster } from '@ionic-native/broadcaster';
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from '../mock/in-memory-data.service';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //引用的服务
@@ -49,7 +45,6 @@ import { renxuanqiuComponent } from '../playRule/renxuanqiu/renxuanqiu.play';
 //功能组建
 import { sharesComponent } from '../playRule/shares/shares';
 import { bottonClickDirective } from '../directive/button.click';
-import { guagualeParticipantsComponent } from '../playRule/guaguale-participants/guaguale-participants';
 @NgModule({
   declarations: [
     MyApp,
@@ -104,7 +99,6 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
         ]
       }
     ),
-    // InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -152,7 +146,6 @@ import { guagualeParticipantsComponent } from '../playRule/guaguale-participants
     LotteryService,
     Broadcaster,
     StatusBar,
-    CookieService,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

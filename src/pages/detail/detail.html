@@ -19,13 +19,13 @@
     <ion-grid>
       <ion-row justify-content-around margin class="radius">
         <ion-col col-2 align-self-center>
-          <img src="assets/images/{{lottery.id}}.png" width="50px">
+          <img src={{detail.icon_url}} width="50px">
         </ion-col>
         <ion-col col-7>
           <section>
-            <h5 no-margin>双色球第{{lottery.issue}}期</h5>
-            <p><span color="danger">2</span>倍<span color="danger">2</span>注<span color="danger">4</span>元</p>
-            <p class="bottom">{{lottery.current}}/{{lottery.total}}人</p>
+            <h5 no-margin>{{detail.title}}第{{detail.issue_no}}期</h5>
+            <p><span color="danger">{{detail.bet_count}}</span>倍<span color="danger">{{detail.bet_number}}</span>注<span color="danger">{{detail.bet_count*detail.bet_number*2}}</span>元</p>
+            <p class="bottom">{{detail.current}}/{{detail.total}}人</p>
           </section>
         </ion-col>
         <ion-col col-3 class="lotteryStatus">
@@ -34,9 +34,9 @@
       </ion-row>
     </ion-grid>
   </ion-list>
-  <p text-center>截止时间：<span color="white">{{lottery.shareTime}}</span></p>
+  <p text-center>截止时间：<span color="white">{{detail.purchase_cut_off_time}}</span></p>
   <section id="redPackge">
-    <p text-center class="initiator"><span color="danger">王总</span>正在发起抢红包</p>
+    <p text-center class="initiator"><span color="danger">{{detail.sponsor}}</span>正在发起抢红包</p>
     <div class="filler">
     </div>
     <div text-center>
@@ -78,7 +78,7 @@
         ——
       </ion-col>
       <ion-col col-6 text-center>
-        已有{{lottery.participator.length}}/{{lottery.total}}人抢到红包
+        已有{{detail.participator}}/{{detail.need_person}}人抢到红包
       </ion-col>
       <ion-col col-3 text-left>
         ——
@@ -100,18 +100,18 @@
         领取时间
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let item of lottery.participator" >
+    <ion-row *ngFor="let item of detail.attend_info_list">
       <ion-col text-center>
-        {{item.name}}
+        {{item.user_name}}
       </ion-col>
       <ion-col text-center>
-        {{item.percent}}%
+        {{item.envelope_ratio}}
       </ion-col>
       <ion-col text-center>
-       {{item.percent/100*lottery.awardAmount}}
+        {{item.can_winning_amount}}
       </ion-col>
       <ion-col text-center>
-        {{item.time}}
+        {{item.receive_time}}
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -122,4 +122,3 @@
   </ion-row>
   <!--<button (click)="test()">测试用例</button>-->
 </ion-content>
-

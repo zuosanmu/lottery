@@ -14,8 +14,6 @@ import { BallService } from '../../service/ball.service';
 export class DaletouPage {
   private lottery;
   private count;
-  private multiple: number = 1;
-  private balance: string = '100.00';
   private superadditionArray = [];
   constructor(
     public navCtrl: NavController,

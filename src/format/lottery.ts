@@ -1,8 +1,7 @@
 export class Lottery {
-  id: number;
-  name: string;
-  issue: string;
-  awardAmount: number;
-  current: number;
-  total: number;
+icon_url:string;
+issue_no:number;
+lottery_type:string;
+purchase_cut_off_time:string;
+title:string;
 }

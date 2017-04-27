@@ -17,16 +17,16 @@
     <ion-grid>
       <ion-row>
         <ion-col col-2>
-          <img src="assets/images/{{lottery.id}}.png" width="50px">
-          <p class="title">{{lottery.name}}</p>
+          <img src={{lottery.icon_url}} width="50px">
+          <p class="title">{{lottery.title}}</p>
         </ion-col>
         <ion-col col-10>
           <ion-row>
             <ion-col col-7 class="no-padding-t">
-              <h5>第{{lottery.issue}}期</h5>
+              <h5>第{{lottery.issue_no}}期</h5>
             </ion-col>
             <ion-col col-5 class="no-padding-t">
-              {{lottery.shareTime}}
+              {{lottery.purchase_cut_off_time}}
             </ion-col>
           </ion-row>
           <ion-row>

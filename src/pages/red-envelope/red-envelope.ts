@@ -39,7 +39,17 @@ export class RedEnvelopePage implements OnInit {
     console.log('ionViewDidLoad RedEnvelopePage');
   }
   getLotteries(): void {
-    this.lotteryService.getHeroes().then(lotteries => this.lotteries = lotteries)
+    this.lotteryService.getPost({
+      "req": "get_new_issues",
+      "content": {
+      }
+    }
+      ,
+      'android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cjk48ctx5mlfliaut1qb5to6s5vugrs83bwvmgs')
+      .subscribe(lotteries => {
+        this.lotteries = JSON.parse(lotteries['_body']).content.lottery_info;
+        console.log(this.lotteries);
+      });
   }
   ngOnInit() {
     this.getLotteries();
@@ -55,12 +65,12 @@ export class RedEnvelopePage implements OnInit {
   }
   goToDetails(page): void {
     let detailPage;
-    switch (page.id) {
-      case 1:
+    switch (page.lottery_type) {
+      case '_ssq':
         page.number = this.ballArray;
         detailPage = ShuangseqiuPage;
         break;
-      case 2:
+      case '_dlt':
         page.number = this.ballArray;
         detailPage = DaletouPage;
         break;
@@ -91,7 +101,8 @@ export class RedEnvelopePage implements OnInit {
       case 11:
         detailPage = FucaiPage;
         break;
-      case 12:
+      case '_ggl':
+      case '_dgg':
         page.participants = this.participants;
         detailPage = GuagualePage;
         break;

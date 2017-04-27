@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, AlertController, LoadingController } from 'ionic-angular';
-import { BallService } from '../../service/ball.service';
 /*
   Generated class for the Detail page.
-
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
@@ -135,41 +133,41 @@ export class detailwebPage {
   presentConfirm() {
     this.navCtrl.popToRoot();
   }
-  shareWechat() {
-    shareWebPageToWechatSession();
-    function checkWechatClient() {
-      sharesdk.isInstallClient.promise(ShareSDK.ClientType.Wechat).then(function (isInstall) {
-        if (isInstall) {
-          alert("微信客户端已安装");
-        } else {
-          alert("未安装微信客户端");
-        }
-      });
-    }
-    /** 分享网页 */
-    function shareWebPage(platformType) {
-      var icon = 'https://raw.githubusercontent.com/zhaolin0801/cordova-sharesdk-demo/master/www/img/Wechat-QRcode.jpeg';
-      var title = '这是网页的标题';
-      var text = '这是网页的内容，android未签名只能分享单张图片到朋友圈';
-      var url = 'http://carhot.cn/articles/1';
-      var shareInfo = { icon: icon, title: title, text: text, url: url };
-      sharesdk.share(platformType, ShareSDK.ShareType.WebPage, shareInfo, success, fail);
-    }
-    function shareWebPageToWechatSession() {
-      shareWebPage(ShareSDK.PlatformType.WechatSession);
-    }
-    function success() {
-      alert('sucessed!');
-    }
+  // shareWechat() {
+  //   shareWebPageToWechatSession();
+  //   function checkWechatClient() {
+  //     sharesdk.isInstallClient.promise(ShareSDK.ClientType.Wechat).then(function (isInstall) {
+  //       if (isInstall) {
+  //         alert("微信客户端已安装");
+  //       } else {
+  //         alert("未安装微信客户端");
+  //       }
+  //     });
+  //   }
+  //   /** 分享网页 */
+  //   function shareWebPage(platformType) {
+  //     var icon = 'https://raw.githubusercontent.com/zhaolin0801/cordova-sharesdk-demo/master/www/img/Wechat-QRcode.jpeg';
+  //     var title = '这是网页的标题';
+  //     var text = '这是网页的内容，android未签名只能分享单张图片到朋友圈';
+  //     var url = 'http://carhot.cn/articles/1';
+  //     var shareInfo = { icon: icon, title: title, text: text, url: url };
+  //     sharesdk.share(platformType, ShareSDK.ShareType.WebPage, shareInfo, success, fail);
+  //   }
+  //   function shareWebPageToWechatSession() {
+  //     shareWebPage(ShareSDK.PlatformType.WechatSession);
+  //   }
+  //   function success() {
+  //     alert('sucessed!');
+  //   }
 
-    function fail(msg) {
-      if (msg.state == ShareSDK.ResponseState.Cancel) {
-        alert('cancel！');
-      } else {
-        alert('failed！: ' + msg.error);
-      }
-    }
-  }
+  //   function fail(msg) {
+  //     if (msg.state == ShareSDK.ResponseState.Cancel) {
+  //       alert('cancel！');
+  //     } else {
+  //       alert('failed！: ' + msg.error);
+  //     }
+  //   }
+  // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad detailwebPage');
   }

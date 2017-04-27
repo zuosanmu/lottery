@@ -11,18 +11,18 @@
         <ion-grid>
             <ion-row>
                 <ion-col col-3>
-                    <img src="{{lottery.icon_url}}" width="50px">
-                    <p class="title">{{lottery.name}}</p>
+                    <img src={{lottery.icon_url}} width="50px">
+                    <p class="title">{{lottery.title}}</p>
                 </ion-col>
                 <ion-col col-6>
                     <section>
                         <h5>第{{lottery.issue_no}}期</h5>
                         <p color="danger">{{lottery.amount}}元</p>
-                        <p class="bottom">{{schedule}}人</p>
+                        <p class="bottom">{{lottery.schedule}}人</p>
                     </section>
                 </ion-col>
                 <ion-col col-3 align-self-end>
-                    <button ion-button [color]="receive_status? 'danger' : 'light'" (click)="goToDetails(lottery)">{{receive_status? '立即抢' : '已领取'}}</button>
+                    <button ion-button [color]="lottery.receive_status?'light':'danger'" (click)="goToDetails(lottery)">{{lottery.receive_status?'已领取':'立即抢'}}</button>
                 </ion-col>
             </ion-row>
         </ion-grid>

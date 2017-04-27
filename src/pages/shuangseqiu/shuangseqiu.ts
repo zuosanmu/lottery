@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { BallService } from '../../service/ball.service';
 /*
@@ -14,8 +14,6 @@ import { BallService } from '../../service/ball.service';
 export class ShuangseqiuPage {
   private lottery;
   private count;
-  private multiple: number = 1;
-  private balance: string = '100.00';
   private superadditionArray = [];
   constructor(
     public navCtrl: NavController,
