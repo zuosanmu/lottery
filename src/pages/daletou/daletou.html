@@ -54,7 +54,7 @@
       </ion-row>
       <shares (shares)="receiveCount($event)" class="border-top-yellow"></shares>
       <ion-row class="border-top-yellow">
-        <ion-col class="balance">账号余额: <span color="danger" >¥{{balance}}</span> </ion-col>
+        <ion-col class="balance">账号余额: <span color="danger" >¥{{lottery.user_now_balance}}</span> </ion-col>
         <ion-col text-center>{{superadditionArray.length+1}}注{{multiple}}倍{{(superadditionArray.length+1)*multiple*2}}元</ion-col>
       </ion-row>
     </ion-grid>
@@ -88,7 +88,7 @@
       <ion-row>
         <ion-col col-1></ion-col>
         <ion-col col-10>
-          <button ion-button block color="danger">付款</button>
+          <button ion-button block color="danger" (click)="pay()" >付款</button>
         </ion-col>
         <ion-col col-1></ion-col>
       </ion-row>

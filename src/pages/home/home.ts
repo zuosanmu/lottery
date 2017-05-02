@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Broadcaster } from '@ionic-native/broadcaster';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 //模拟数据
 import { Lottery } from '../../format/lottery';
 import { LotteryService } from '../../service/lottery.service';
@@ -27,11 +27,13 @@ import { RedEnvelopePage } from '../red-envelope/red-envelope';
 export class HomePage implements OnInit {
   lotteries: Lottery[];
   selectedLottery: Lottery;
+  cookies;
   private
   constructor(
     public navCtrl: NavController,
     private lotteryService: LotteryService,
-    private broadcaster: Broadcaster) {
+    private broadcaster: Broadcaster,
+    public alertCtrl: AlertController) {
 
   }
   getLotteries(): void {
@@ -41,10 +43,11 @@ export class HomePage implements OnInit {
         'offset': 1
       }
     }
-      ,
-      'android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cjk48ctx5mlfliaut1qb5to6s5vugrs83bwvmgs')
+    )
       .subscribe(lotteries => {
-        this.lotteries = JSON.parse(lotteries._body).content.envelope_list;
+        if (!!JSON.parse(lotteries._body).content) {
+          this.lotteries = JSON.parse(lotteries._body).content.envelope_list
+        }
         console.log(this.lotteries);
       }
       );
@@ -54,7 +57,18 @@ export class HomePage implements OnInit {
     this.getIdentity('');
   }
   goToDetails(page): void {
+    if (page.receive_status) {
+
+    }
     this.navCtrl.push(DetailPage, { page });
+  }
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: '这个红包已经抢过啦！',
+      subTitle: "你在个人信息里面查看",
+      buttons: ['确定']
+    });
+    alert.present();
   }
   goToSent(): void {
     this.navCtrl.push(RedEnvelopePage, {});

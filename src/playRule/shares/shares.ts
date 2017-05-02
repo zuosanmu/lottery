@@ -5,7 +5,7 @@ import { AlertController } from 'ionic-angular';
   templateUrl: './shares.html'
 })
 export class sharesComponent implements OnInit {
-  private count: number = 1;
+  private count: number;
   private isOne: boolean = false;
   private isFive: boolean = true;
   private isTen: boolean = true;
@@ -31,8 +31,7 @@ export class sharesComponent implements OnInit {
         this.isOther = false;
         break;
     }
-    this.count = sum;
-    console.log(this.count);
+    this.sendCount(sum);
   }
   presentPrompt() {
     this.isOne = this.isFive = this.isTen = this.isOther = true;
@@ -59,10 +58,10 @@ export class sharesComponent implements OnInit {
     alert.present();
   }
   ngOnInit() {
-    this.sendCount();
+    this.sendCount(1);
   }
-  sendCount() {
-    this.shares.emit(this.count);
+  sendCount(acount:number) {
+    this.shares.emit(acount);
   }
 
 }

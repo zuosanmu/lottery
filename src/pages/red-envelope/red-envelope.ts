@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Lottery } from '../../format/lottery';
 import { LotteryService } from '../../service/lottery.service';
 //加载页面
@@ -30,10 +30,12 @@ export class RedEnvelopePage implements OnInit {
   lotteries: Lottery[];
   ballArray: string[];
   participants: number;
+  user_now_balance: number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private lotteryService: LotteryService) { }
+    private lotteryService: LotteryService,
+    public alertCtrl: AlertController, ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RedEnvelopePage');
@@ -44,10 +46,11 @@ export class RedEnvelopePage implements OnInit {
       "content": {
       }
     }
-      ,
-      'android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cjk48ctx5mlfliaut1qb5to6s5vugrs83bwvmgs')
+    )
       .subscribe(lotteries => {
-        this.lotteries = JSON.parse(lotteries['_body']).content.lottery_info;
+        let lot = JSON.parse(lotteries['_body']).content;
+        this.user_now_balance = lot.user_now_balance;
+        this.lotteries = lot.lottery_info;
         console.log(this.lotteries);
       });
   }
@@ -65,54 +68,80 @@ export class RedEnvelopePage implements OnInit {
   }
   goToDetails(page): void {
     let detailPage;
-    switch (page.lottery_type) {
-      case '_ssq':
-        page.number = this.ballArray;
-        detailPage = ShuangseqiuPage;
-        break;
-      case '_dlt':
-        page.number = this.ballArray;
-        detailPage = DaletouPage;
-        break;
-      case 3:
-        detailPage = Pailie3Page;
-        break;
-      case 4:
-        detailPage = Pailie5Page;
-        break;
-      case 5:
-        detailPage = QilecaiPage;
-        break;
-      case 6:
-        detailPage = QixingcaiPage;
-        break;
-      case 7:
-        detailPage = JingcaizuqiuPage;
-        break;
-      case 8:
-        detailPage = JingcailanqiuPage;
-        break;
-      case 9:
-        detailPage = ShengfucaiPage;
-        break;
-      case 10:
-        detailPage = DingguaguaPage;
-        break;
-      case 11:
-        detailPage = FucaiPage;
-        break;
-      case '_ggl':
-      case '_dgg':
-        page.participants = this.participants;
-        detailPage = GuagualePage;
-        break;
-      case 13:
-        detailPage = RenxuanqiuPage;
-        break;
+    if (page.lottery_type === '_ggl' || page.lottery_type === '_dgg') {
+      this.lotteryService.getPost({
+        "req": "get_scratch_type_info",
+        "content": {
+          scratch_face_value: this.participants,
+          lottery_type: page.lottery_type
+        }
+      }
+      )
+        .subscribe(arraies => {
+          if (JSON.parse(arraies['_body']).content == {}) {
+            page.participants = this.participants;
+            detailPage = GuagualePage;
+            this.navCtrl.push(detailPage, { page });
+          } else {
+            this.presentAlert('该面值的卖完了');
+          }
 
-      default:
-        break;
+        });
+
+    } else {
+      page.user_now_balance = this.user_now_balance;
+      switch (page.lottery_type) {
+        case '_ssq':
+          page.number = this.ballArray;
+          detailPage = ShuangseqiuPage;
+          break;
+        case '_dlt':
+          page.number = this.ballArray;
+          detailPage = DaletouPage;
+          break;
+        case 3:
+          detailPage = Pailie3Page;
+          break;
+        case 4:
+          detailPage = Pailie5Page;
+          break;
+        case 5:
+          detailPage = QilecaiPage;
+          break;
+        case 6:
+          detailPage = QixingcaiPage;
+          break;
+        case 7:
+          detailPage = JingcaizuqiuPage;
+          break;
+        case 8:
+          detailPage = JingcailanqiuPage;
+          break;
+        case 9:
+          detailPage = ShengfucaiPage;
+          break;
+        case 10:
+          detailPage = DingguaguaPage;
+          break;
+        case 11:
+          detailPage = FucaiPage;
+          break;
+        case 13:
+          detailPage = RenxuanqiuPage;
+          break;
+
+        default:
+          break;
+      }
+      this.navCtrl.push(detailPage, { page });
     }
-    this.navCtrl.push(detailPage, { page });
+  }
+  presentAlert(msg: string) {
+    let alert = this.alertCtrl.create({
+      title: '提示信息',
+      subTitle: msg,
+      buttons: ['确定']
+    });
+    alert.present();
   }
 }

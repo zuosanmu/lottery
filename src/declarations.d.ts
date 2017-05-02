@@ -15,3 +15,4 @@ declare module '*';
 declare var sharesdk: any;
 declare var ShareSDK: any;
 declare var Wechat;
+declare var $sharesdk;

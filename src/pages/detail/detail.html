@@ -8,7 +8,7 @@
   <ion-navbar>
     <ion-title>分享详情</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="shareWechat()">
+      <button ion-button icon-only (click)="shareWechat(detail.max_amount,detail.site_id,detail.icon_url)">
         <ion-icon name="share-outline"></ion-icon>
       </button>
     </ion-buttons>
@@ -25,7 +25,7 @@
           <section>
             <h5 no-margin>{{detail.title}}第{{detail.issue_no}}期</h5>
             <p><span color="danger">{{detail.bet_count}}</span>倍<span color="danger">{{detail.bet_number}}</span>注<span color="danger">{{detail.bet_count*detail.bet_number*2}}</span>元</p>
-            <p class="bottom">{{detail.current}}/{{detail.total}}人</p>
+            <p class="bottom">{{detail.attend_info_list.length}}/{{detail.need_person}}人</p>
           </section>
         </ion-col>
         <ion-col col-3 class="lotteryStatus">
@@ -35,7 +35,7 @@
     </ion-grid>
   </ion-list>
   <p text-center>截止时间：<span color="white">{{detail.purchase_cut_off_time}}</span></p>
-  <section id="redPackge">
+  <section id="redPackge" *ngIf="!detail.receive_status">
     <p text-center class="initiator"><span color="danger">{{detail.sponsor}}</span>正在发起抢红包</p>
     <div class="filler">
     </div>
@@ -44,29 +44,11 @@
     </div>
   </section>
   <ion-grid class="lotteryball">
-    <ion-row>
+    <ion-row *ngFor="let item of detail.lottery_order_list" >
       <ion-col col-1>
       </ion-col>
       <ion-col col-10 text-center class="lotterybg">
-        3123213123123123
-      </ion-col>
-      <ion-col col-1>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-1>
-      </ion-col>
-      <ion-col col-10 text-center class="lotterybg">
-        3123213123123123
-      </ion-col>
-      <ion-col col-1>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-1>
-      </ion-col>
-      <ion-col col-10 text-center class="lotterybg">
-        3123213123123123
+        {{item.bet_item}}
       </ion-col>
       <ion-col col-1>
       </ion-col>
@@ -78,7 +60,7 @@
         ——
       </ion-col>
       <ion-col col-6 text-center>
-        已有{{detail.participator}}/{{detail.need_person}}人抢到红包
+        已有{{detail.attend_info_list.length}}/{{detail.need_person}}人抢到红包
       </ion-col>
       <ion-col col-3 text-left>
         ——

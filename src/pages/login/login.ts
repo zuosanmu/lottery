@@ -38,12 +38,12 @@ export class LoginPage {
   this.lotteryService.getPost( {
         "req": "login",
         "content": {
-          "site_id":1000003,
+          "site_id":1000203,
           "phone": 18615718184,
           "verification_code": 9237,
           "device_token": "sdf4443"
         }
-      }, 'android|user|1.0.0|000|proc|')
+      })
       .subscribe(
       data => {
         this.token = data;

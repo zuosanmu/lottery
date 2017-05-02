@@ -17,16 +17,16 @@
     <ion-grid>
       <ion-row>
         <ion-col col-2>
-          <img src="assets/images/{{lottery.id}}.png" width="50px">
-          <p class="title">{{lottery.name}}</p>
+          <img src="{{lottery.icon_url}}" width="50px">
+          <p class="title">{{lottery.title}}</p>
         </ion-col>
         <ion-col col-10>
           <ion-row>
             <ion-col col-7 class="no-padding-t">
-              <h5>第{{lottery.issue}}期</h5>
+              <h5>第{{lottery.issue_no}}期</h5>
             </ion-col>
             <ion-col col-5 class="no-padding-t">
-              {{lottery.shareTime}}
+              {{lottery.purchase_cut_off_time}}
             </ion-col>
           </ion-row>
           <ion-row>
@@ -54,7 +54,7 @@
       </ion-row>
       <shares (shares)="receiveCount($event)" class="border-top-yellow"></shares>
       <ion-row class="border-top-yellow">
-        <ion-col class="balance">账号余额: <span color="danger" >¥{{balance}}</span> </ion-col>
+        <ion-col class="balance">账号余额: <span color="danger" >¥{{lottery.user_now_balance}}</span> </ion-col>
         <ion-col text-center>{{superadditionArray.length+1}}注{{multiple}}倍{{(superadditionArray.length+1)*multiple*2}}元</ion-col>
       </ion-row>
     </ion-grid>
@@ -88,7 +88,7 @@
       <ion-row>
         <ion-col col-1></ion-col>
         <ion-col col-10>
-          <button ion-button block color="danger" (click)="presentConfirm()" >付款</button>
+          <button ion-button block color="danger" (click)="pay()" >付款</button>
         </ion-col>
         <ion-col col-1></ion-col>
       </ion-row>

@@ -4,7 +4,6 @@ import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
   templateUrl: './guaguale.play.html'
 })
 export class guagualeComponent implements OnInit {
-  private count: number = 2;
   private isTwo: boolean = false;
   private isThree: boolean = true;
   private isFive: boolean = true;
@@ -36,13 +35,14 @@ export class guagualeComponent implements OnInit {
         this.isThirty = false;
         break;
     }
-    this.count = sum;
+    this.sendCount(sum);
+    ;
   }
   ngOnInit() {
-    this.sendCount();
+    this.sendCount(2);
   }
-  sendCount() {
-    this.outerguaguale.emit(this.count);
+  sendCount(acount:number) {
+    this.outerguaguale.emit(acount);
   }
 
 }
