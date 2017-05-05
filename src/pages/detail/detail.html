@@ -33,14 +33,6 @@
           <p text-center color="white">待开奖</p>
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let item of detail.buy_list" >
-        <ion-col>
-          <img src={{item.scratch_ready_url}} alt="">
-        </ion-col>
-        <ion-col>
-          <img src={{item.scratch_result_url}} alt="">
-        </ion-col>
-      </ion-row>
     </ion-grid>
   </ion-list>
   <p text-center *ngIf="detail.purchase_cut_off_time" >截止时间：<span color="white">{{detail.purchase_cut_off_time}}</span></p>
