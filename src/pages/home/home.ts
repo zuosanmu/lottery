@@ -28,13 +28,35 @@ export class HomePage implements OnInit {
   lotteries: Lottery[];
   selectedLottery: Lottery;
   cookies;
+  replaykey:boolean=false;
   private
   constructor(
     public navCtrl: NavController,
     private lotteryService: LotteryService,
     private broadcaster: Broadcaster,
     public alertCtrl: AlertController) {
-
+    let _that = this;
+    function setupWebViewJavascriptBridge(callback) {
+      if ((<any>window).WebViewJavascriptBridge) {
+        alert('WebViewJavascriptBridge');
+        return callback((<any>window).WebViewJavascriptBridge);
+      }
+      if ((<any>window).WVJBCallbacks) {
+        alert('WVJBCallbacks');
+        return (<any>window).WVJBCallbacks.push(callback);
+      }
+      (<any>window).WVJBCallbacks = [callback];
+      var WVJBIframe = document.createElement('iframe');
+      WVJBIframe.style.display = 'none';
+      WVJBIframe.src = 'https://__bridge_loaded__';
+      document.documentElement.appendChild(WVJBIframe);
+      setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0)
+    }
+    setupWebViewJavascriptBridge(function (bridge) {
+      bridge.callHandler('loginAction', {}, function (response) {
+        _that.cookies = response;
+      })
+    })
   }
   getLotteries(): void {
     this.lotteryService.getPost({
@@ -53,7 +75,18 @@ export class HomePage implements OnInit {
       );
   }
   ngOnInit() {
-    this.getLotteries();
+    if ((<any>window).navigator.userAgent.indexOf('iPhone') != -1) {
+       setTimeout(()=> this.replaykey=true, 1000);
+      setTimeout(() => {
+        this.lotteryService.getcookies(this.cookies);
+        this.getLotteries()
+      }
+        ,
+        300)
+    } else {
+       setTimeout(()=> this.replaykey=true, 10000);
+      this.getLotteries();
+    }
     this.getIdentity('');
   }
   goToDetails(page): void {
@@ -72,6 +105,42 @@ export class HomePage implements OnInit {
   }
   goToSent(): void {
     this.navCtrl.push(RedEnvelopePage, {});
+  }
+  goback() {
+    if ((<any>window).appInterface != undefined) {
+      (<any>window).appInterface.goback();
+    } else {
+
+      setupWebViewJavascriptBridge(function (bridge) {
+        bridge.callHandler('goback', {}, function (response) {
+        });
+      })
+    }
+    function setupWebViewJavascriptBridge(callback) {
+      if ((<any>window).WebViewJavascriptBridge) {
+        return callback((<any>window).WebViewJavascriptBridge);
+      }
+      if ((<any>window).WVJBCallbacks) {
+        return (<any>window).WVJBCallbacks.push(callback);
+      }
+      (<any>window).WVJBCallbacks = [callback];
+      var WVJBIframe = document.createElement('iframe');
+      WVJBIframe.style.display = 'none';
+      WVJBIframe.src = 'https://__bridge_loaded__';
+      document.documentElement.appendChild(WVJBIframe);
+      setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0)
+    }
+
+  }
+  ionViewDidEnter(){
+   if(this.replaykey){
+      this.getLotteries();
+      console.log('ionViewDidEnter');
+    }
+  }
+  ionViewWillEnter(){
+
+
   }
   getIdentity(data) {
     console.log(data);

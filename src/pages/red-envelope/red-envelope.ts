@@ -28,7 +28,8 @@ import { GuagualePage } from '../guaguale/guaguale';
 })
 export class RedEnvelopePage implements OnInit {
   lotteries: Lottery[];
-  ballArray: string[];
+  ballArray_ssq: string[];
+  ballArray_dlt: string[];
   participants: number;
   user_now_balance: number;
   constructor(
@@ -58,16 +59,17 @@ export class RedEnvelopePage implements OnInit {
     this.getLotteries();
   }
   receiveshuangseqiu(msg: string[]) {
-    this.ballArray = msg;
+    this.ballArray_ssq = msg;
   }
   receiveguaguale(msg: number) {
     this.participants = msg;
   }
   receivedaletou(msg: string[]) {
-    this.ballArray = msg;
+    this.ballArray_dlt = msg;
   }
   goToDetails(page): void {
     let detailPage;
+     page.user_now_balance = this.user_now_balance;
     if (page.lottery_type === '_ggl' || page.lottery_type === '_dgg') {
       this.lotteryService.getPost({
         "req": "get_scratch_type_info",
@@ -78,7 +80,8 @@ export class RedEnvelopePage implements OnInit {
       }
       )
         .subscribe(arraies => {
-          if (JSON.parse(arraies['_body']).content == {}) {
+          console.log(arraies['_body'].indexOf('{}'));
+          if (arraies['_body'].indexOf('{}')==-1) {
             page.participants = this.participants;
             detailPage = GuagualePage;
             this.navCtrl.push(detailPage, { page });
@@ -89,14 +92,13 @@ export class RedEnvelopePage implements OnInit {
         });
 
     } else {
-      page.user_now_balance = this.user_now_balance;
       switch (page.lottery_type) {
         case '_ssq':
-          page.number = this.ballArray;
+          page.number = this.ballArray_ssq;
           detailPage = ShuangseqiuPage;
           break;
         case '_dlt':
-          page.number = this.ballArray;
+          page.number = this.ballArray_dlt;
           detailPage = DaletouPage;
           break;
         case 3:

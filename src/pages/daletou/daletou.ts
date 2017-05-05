@@ -52,20 +52,21 @@ export class DaletouPage {
         'balance': this.lottery.user_now_balance,                                        //用户余额
         'total_bet_amount': this.acount,                        //投注总额
         'need_person': this.count,
-        'bet_items': [{
-          'play_type': '_01',                      //玩法
-          'bet_item': '07,08,10,14,20#07,12',                     //投注项
-          'bet_type': '_01',                       //投注类型
-          'bet_amount': 2,                       //投注金额
-        }]                              //所需人数
+        'bet_items': this.lotteryService.betsArr(this.superadditionArray.concat([this.lottery.number]), '_dlt')                              //所需人数
       }
     }
-     )
+    )
       .subscribe(_order => {
         if (JSON.parse(_order['_body']).ret[0] == 'ok') {
+          let _data=JSON.parse(_order['_body']).content;
           this.lottery.user_now_balance = this.lottery.user_now_balance - this.acount;
+          this.shareHall(JSON.parse(_order['_body']).content.order_no);
+          this.presentConfirm(_data);
         }
-        this.shareHall(JSON.parse(_order['_body']).content.order_no);
+        else{
+          this.presentAlert(JSON.parse(_order['_body']).msg);
+        }
+        // this.shareHall(JSON.parse(_order['_body']).content.order_no);
         // this.presentAlert(JSON.parse(_order['_body']).content.order_no);
       }
       );
@@ -78,27 +79,26 @@ export class DaletouPage {
       }
     })
       .subscribe(data => {
-        this.presentConfirm();
       }
       );
   }
   presentAlert(msg: string) {
     let alert = this.alertCtrl.create({
       title: '提示信息',
-      subTitle: "订单号:" + msg,
+      subTitle: msg,
       buttons: ['确定']
     });
     alert.present();
   }
-  presentConfirm() {
+  presentConfirm(obj) {
     let alert = this.alertCtrl.create({
       title: '支付成功',
-      message: '你已经成功支付！！是否分享红包到大厅',
+      message: '请选择分享的媒体',
       buttons: [
         {
           text: '确定',
           handler: () => {
-            this.navCtrl.popToRoot();
+            this.shareWechat(obj.max_amount, obj.site_id, this.lottery.icon_url);
           }
         }
       ]
@@ -128,7 +128,7 @@ export class DaletouPage {
                 "payPlatform": 'heepay'
               }
             }
-              )
+            )
               .subscribe(html => {
 
               }
@@ -141,5 +141,24 @@ export class DaletouPage {
   }
   receiveCount(msg: number) {
     this.count = msg;
+  }
+  shareWechat(amount: number, order: number, icon_url: string) {
+    if ((<any>window).appInterface != undefined) {
+      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖' + amount + '的红包', "彩店邀请码:" + order, icon_url, "http://www.rongqiangu.com/wechat-usr");
+    } else {
+      var params =
+        {
+          "text": "彩店邀请码:" + order,
+          "imageUrl": icon_url,
+          "title": '这是一个理论最高奖' + amount + '的红包',
+          "titleUrl": "http://www.rongqiangu.com/wechat-usr",
+          "description": "彩站助手",
+          "site": "彩站助手",
+          "siteUrl": "http://www.rongqiangu.com/wechat-usr",
+          "type": $sharesdk.ContentType.Auto
+        };
+      $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {
+      });
+    }
   }
 }

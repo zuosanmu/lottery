@@ -47,7 +47,6 @@ export class DetailPage implements OnInit {
     this.lottery = this.navParams.get('page');
   }
   ngOnInit() {
-    this.wechatInit()
     this.getDetailData();
   }
   presentLoadingDefault() {
@@ -64,15 +63,20 @@ export class DetailPage implements OnInit {
       }
     })
       .subscribe(data => {
-        console.log(data);
         loading.dismiss();
         this.details = JSON.parse(data['_body']).content;
-        this.detail.attend_info_list.push({
+        this.detail.receive_status = true;
+        this.detail.attend_info_list ? this.detail.attend_info_list.push({
           user_name: this.details.user_name,
           envelope_ratio: this.details.envelope_ratio,
           receive_time: this.details.receive_time,
           can_winning_amount: this.details.amount
-        })
+        }) : this.detail.attend_info_list = [{
+          user_name: this.details.user_name,
+          envelope_ratio: this.details.envelope_ratio,
+          receive_time: this.details.receive_time,
+          can_winning_amount: this.details.amount
+        }];
         console.log(this.details);
       }
       );
@@ -121,61 +125,76 @@ export class DetailPage implements OnInit {
   presentConfirm() {
     this.navCtrl.popToRoot();
   }
-  //   test(){
-  //   Wechat.share({
-  //     text: "This is just a plain string",
-  //     scene: Wechat.Scene.TIMELINE   // share to Timeline
-  //   }, function () {
-  //     alert("Success");
-  //   }, function (reason) {
-  //     alert("Failed: " + reason);
-  //   });
-  // }
-
   //向后台申请数据
   getDetailData() {
-    this.LotteryService.getPost({
-      "req": "envelope_bet_info",
-      "content": {
-        'order_no': this.lottery.order_no,
-        'lottery_type': this.lottery.lottery_type
-      }
-    })
-      .subscribe(data => {
-        this.detail = JSON.parse(data['_body']).content;
-        //  JSON.parse(lotteries._body).content.envelope_list;
-        console.log(this.detail);
-      }
-      );
+    if (this.lottery.lottery_type == '_dgg' || this.lottery.lottery_type == '_ggl') {
+      this.LotteryService.getPost({
+        "req": "scratch_envelope_bet_info",
+        "content": {
+          'order_no': this.lottery.order_no
+        }
+      })
+        .subscribe(data => {
+          if (data['_body'].indexOf('failed') !== -1) {
+            let alert = this.alertCtrl.create({
+              title: '提示信息',
+              subTitle: "服务器迷失在雾霾中",
+              buttons: ['确定']
+            });
+            alert.present();
+          } else {
+            this.detail = JSON.parse(data['_body']).content;
+            console.log(this.detail);
+          }
+
+        }
+        );
+    } else {
+      this.LotteryService.getPost({
+        "req": "envelope_bet_info",
+        "content": {
+          'order_no': this.lottery.order_no,
+          'lottery_type': this.lottery.lottery_type
+        }
+      })
+        .subscribe(data => {
+          if (data['_body'].indexOf('failed') !== -1) {
+            let alert = this.alertCtrl.create({
+              title: '提示信息',
+              subTitle: "服务器迷失在雾霾中",
+              buttons: ['确定']
+            });
+            alert.present();
+          } else {
+            this.detail = JSON.parse(data['_body']).content;
+            console.log(this.detail);
+          }
+        }
+        );
+    }
+
   }
   //微信分享
-  shareWechat(amount:number,order:number,icon_url:string) {
+  shareWechat(amount: number, order: number, icon_url: string) {
     if ((<any>window).appInterface != undefined) {
-      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖'+amount+'的红包',"彩店邀请码:"+order, icon_url, "http://www.rongqiangu.com/wechat-usr");
+      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖' + amount + '的红包', "彩店邀请码:" + order, icon_url, "http://www.rongqiangu.com/wechat-usr");
+    } else {
+      var params =
+            {
+                "text" : "彩店邀请码:" + order,
+                "imageUrl" : icon_url,
+                "title" : '这是一个理论最高奖' + amount + '的红包',
+                "titleUrl" : "http://www.rongqiangu.com/wechat-usr",
+                "description" : "彩站助手",
+                "site" : "彩站助手",
+                "siteUrl" : "http://www.rongqiangu.com/wechat-usr",
+                "type" : $sharesdk.ContentType.Auto
+            };
+      $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {
+      });
     }
-    var params = {
-      "text": "彩店邀请码:"+order, // 分享的文字
-      "imageUrl": icon_url, // 分享的图片 Url
-      "title": '这是一个理论最高奖'+amount+'的红包', //分享的标题
-      "titleUrl": "http://rongqiangu-dev.oss-cn-hangzhou.aliyuncs.com/icon-img/ah_11x5.png",
-      "description": "测试的描述",
-      "site": "ShareSDK",
-      "siteUrl": "http://www.rongqiangu.com/wechat-usr",
-      "type": $sharesdk.ContentType.Text
-    };
-    $sharesdk.shareContent($sharesdk.PlatformID.WechatPlatform, params, function (platform, state, shareInfo, error) {
-      alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
-    });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailPage');
-  }
-
-  wechatInit() {
-    (<any>window).platformConfig = {};
-    var weixinConf = {};
-    weixinConf["app_id"] = "wx12d852635e90b353";
-    weixinConf["app_secret"] = "29f71745fd51dd94f5b56e3b0b1fc4b3";
-    (<any>window).platformConfig[$sharesdk.PlatformID.WechatPlatform] = weixinConf;
   }
 }

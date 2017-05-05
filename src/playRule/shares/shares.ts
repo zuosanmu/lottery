@@ -17,13 +17,13 @@ export class sharesComponent implements OnInit {
   setcount(sum) {
     this.isOne = this.isFive = this.isTen = this.isOther = true;
     switch (sum) {
-      case 1:
+      case 5:
         this.isOne = false;
         break;
-      case 5:
+      case 10:
         this.isFive = false;
         break;
-      case 10:
+      case 15:
         this.isTen = false;
         break;
 
@@ -42,7 +42,7 @@ export class sharesComponent implements OnInit {
           name: 'acount',
           type: 'number',
           min: '1',
-          max:'100',
+          max: '100',
           value: '2',
           placeholder: '请输入你要分享红包的人数'
         },
@@ -50,7 +50,10 @@ export class sharesComponent implements OnInit {
       buttons: [
         {
           text: '确定',
-          handler: (sum) => { this.count = sum.acount; this.isOther = false; },
+          handler: (sum) => {
+            this.count = sum.acount; this.isOther = false;
+            this.sendCount(this.count);
+          },
           role: 'cancel',
         }
       ]
@@ -58,9 +61,9 @@ export class sharesComponent implements OnInit {
     alert.present();
   }
   ngOnInit() {
-    this.sendCount(1);
+    this.sendCount(5);
   }
-  sendCount(acount:number) {
+  sendCount(acount: number) {
     this.shares.emit(acount);
   }
 

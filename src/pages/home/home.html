@@ -1,43 +1,48 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title text-center>
-            福利天天送
-        </ion-title>
-    </ion-navbar>
-</ion-header >
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button class="back-button disable-hover bar-button bar-button-ios back-button-ios bar-button-default bar-button-default-ios show-back-button" (click)="goback()">
+        <ion-icon class="back-button-icon icon icon-ios back-button-icon-ios ion-ios-arrow-back-outline" name="arrow-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title text-center>
+      福利天天送
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content>
-    <ion-list *ngFor="let lottery of lotteries">
-        <ion-grid>
-            <ion-row>
-                <ion-col col-3>
-                    <img src={{lottery.icon_url}} width="50px">
-                    <p class="title">{{lottery.title}}</p>
-                </ion-col>
-                <ion-col col-6>
-                    <section>
-                        <h5>第{{lottery.issue_no}}期</h5>
-                        <p color="danger">{{lottery.amount}}元</p>
-                        <p class="bottom">{{lottery.schedule}}人</p>
-                    </section>
-                </ion-col>
-                <ion-col col-3 align-self-end>
-                    <button ion-button [color]="lottery.receive_status?'light':'danger'" (click)="goToDetails(lottery)">{{lottery.receive_status?'已领取':'立即抢'}}</button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+  <ion-list *ngFor="let lottery of lotteries">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+          <img src={{lottery.icon_url}} width="50px">
+          <p class="title">{{lottery.title}}</p>
+        </ion-col>
+        <ion-col col-6>
+          <section>
+            <h5>{{lottery.issue_no?'第'+lottery.issue_no+'期':lottery.title}}</h5>
+            <p color="danger">{{lottery.amount}}元</p>
+            <p class="bottom">{{lottery.schedule}}人</p>
+          </section>
+        </ion-col>
+        <ion-col col-3 align-self-end>
+          <button ion-button [color]="lottery.receive_status?'light':'danger'" (click)="goToDetails(lottery)">{{lottery.receive_status?'已领取':'立即抢'}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-    </ion-list>
+  </ion-list>
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
-        <ion-grid>
-            <ion-row>
-                <ion-col col-1></ion-col>
-                <ion-col col-10><button ion-button block color="danger" (click)="goToSent()">我也要发</button></ion-col>
-                <ion-col col-1></ion-col>
-            </ion-row>
-        </ion-grid>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1></ion-col>
+        <ion-col col-10><button id="getcookie" ion-button block color="danger" (click)="goToSent()">我也要发</button></ion-col>
+        <ion-col col-1></ion-col>
+      </ion-row>
+    </ion-grid>
 
-    </ion-toolbar>
+  </ion-toolbar>
 </ion-footer>
