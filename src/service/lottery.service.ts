@@ -17,7 +17,7 @@ export class LotteryService {
     var sinaConf = {};
     sinaConf["app_key"] = "2023073395";
     sinaConf["app_secret"] = "986316ec6ca779bfe3ca27b95ada3c90";
-    sinaConf["redirect_uri"] = "http://www.rongqiangu.com/";
+    sinaConf["redirect_uri"] = "https://api.weibo.com/oauth2/default.html";
     (<any>window).platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
     //微信
     var weixinConf = {};
@@ -47,7 +47,7 @@ export class LotteryService {
   }
   getPost(req): Observable<any> {
     this.setHeaders(this.cookies);
-    // this.setHeaders('android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cj7i1qdslskfr65120eak351ja9kl6nlwb0k97q');
+    // this.setHeaders('android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0bcw52to88ke4la9k9785glmuarg839wqc6fbhlm');
     // this.setHeaders('android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cx2b5p4hbpdl1wvq77irvq9qmctcdkah6982xb2');
     return this.http
       .post(this.heroesUrl, req, this.options);

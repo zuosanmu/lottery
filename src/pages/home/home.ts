@@ -25,7 +25,7 @@ import { RedEnvelopePage } from '../red-envelope/red-envelope';
   templateUrl: 'home.html',
 })
 export class HomePage implements OnInit {
-  lotteries: Lottery[];
+  lotteries: Lottery[]=[];
   selectedLottery: Lottery;
   cookies;
   replaykey:boolean=false;
@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
     )
       .subscribe(lotteries => {
         if (!!JSON.parse(lotteries._body).content) {
-          this.lotteries = JSON.parse(lotteries._body).content.envelope_list
+          this.lotteries = JSON.parse(lotteries._body).content.envelope_list||[];
         }
         console.log(this.lotteries);
       }

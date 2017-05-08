@@ -11,7 +11,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content [ngClass]="{'danglaoban':!lotteries.length}">
   <ion-list *ngFor="let lottery of lotteries">
     <ion-grid>
       <ion-row>
@@ -39,7 +39,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-1></ion-col>
-        <ion-col col-10><button id="getcookie" ion-button block color="danger" (click)="goToSent()">我也要发</button></ion-col>
+        <ion-col col-10><button id="getcookie" ion-button block color="danger" (click)="goToSent()">{{lotteries.length?'我也要发':'我来当老板'}}</button></ion-col>
         <ion-col col-1></ion-col>
       </ion-row>
     </ion-grid>
