@@ -1,0 +1,17 @@
+<ion-row>
+  <ion-col col-12>
+    <h2>请选择要赠送的采种:</h2>
+  </ion-col>
+  <ion-col text-center col-3 *ngFor="let item of InputMsg;let i = index">
+    <button ion-button small [outline]="clicked[i]" color="danger" (click)="setcount(item,i)">{{item.scratch_title}}</button>
+  </ion-col>
+  <!--<ion-col text-center col-3>
+    <button ion-button small [outline]="isFive" color="danger" (click)="setcount(10)">10 人</button>
+  </ion-col>
+  <ion-col text-center col-3>
+    <button ion-button small [outline]="isTen" color="danger" (click)="setcount(15)">15人</button>
+  </ion-col>
+  <ion-col text-center col-3>
+    <button ion-button small [outline]="isOther" color="danger" (click)="presentPrompt()">{{isOther?'其他':count+'人'}}</button>
+  </ion-col>-->
+</ion-row>

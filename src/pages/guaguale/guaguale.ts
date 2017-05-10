@@ -12,11 +12,11 @@ import { LotteryService } from '../../service/lottery.service';
   templateUrl: 'guaguale.html'
 })
 export class GuagualePage implements OnInit {
-  private lottery;
-  private species = {
-    'scratch_title': 'stirng',
-    'scratch_type_id': 'string'
+  kind = {
+    scratch_type_id:''
   };
+  lo_title: string[];
+  private lottery;
   private count: number = 1;
   private acount: number;
   private multiple: number = 1;
@@ -42,9 +42,8 @@ export class GuagualePage implements OnInit {
       .subscribe(data => {
         if (!!JSON.parse(data['_body']).content.scratch_list) {
           console.log(JSON.parse(data['_body']).content);
-          this.species = JSON.parse(data['_body']).content.scratch_list[0];
+          this.lo_title = JSON.parse(data['_body']).content.scratch_list;
         }
-        console.log(this.species);
       }
       );
   }
@@ -66,7 +65,7 @@ export class GuagualePage implements OnInit {
         'scratch_number': this.multiple,                                  // 张数
         'need_person': this.count,                                     //所需人数
         'amount': this.acount,                                                //金额
-        'scratch_type_id': this.species.scratch_type_id                             //刮刮彩种类编号
+        'scratch_type_id': this.kind.scratch_type_id                            //刮刮彩种类编号
       }
     }
     )
@@ -167,6 +166,9 @@ export class GuagualePage implements OnInit {
   }
   receiveCount(msg: number) {
     this.count = msg;
+  }
+  receivekind(msg) {
+    this.kind = msg;
   }
   shareWechat(amount: number, order: number, icon_url: string) {
     if ((<any>window).appInterface != undefined) {

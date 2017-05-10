@@ -44,6 +44,7 @@ import { guagualeComponent } from '../playRule/guaguale/guaguale.play';
 import { renxuanqiuComponent } from '../playRule/renxuanqiu/renxuanqiu.play';
 //功能组建
 import { sharesComponent } from '../playRule/shares/shares';
+import { kindsComponent } from '../playRule/kinds/kinds';
 import { bottonClickDirective } from '../directive/button.click';
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { bottonClickDirective } from '../directive/button.click';
     detailwebPage,
     //功能组建
     sharesComponent,
+    kindsComponent,
     //组件加载
     shuangseqiuComponent,
     daletouComponent,
@@ -123,6 +125,7 @@ import { bottonClickDirective } from '../directive/button.click';
     detailwebPage,
     //功能组建导入
     sharesComponent,
+    kindsComponent,
     //组建导入
     shuangseqiuComponent,
     daletouComponent,

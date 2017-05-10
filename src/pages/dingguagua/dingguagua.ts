@@ -12,6 +12,7 @@ import { LotteryService } from '../../service/lottery.service';
   templateUrl: 'dingguagua.html'
 })
 export class DingguaguaPage implements OnInit {
+  private lo_title: any;
   private lottery;
   private species = {
     'scratch_title': 'stirng',
@@ -42,6 +43,7 @@ export class DingguaguaPage implements OnInit {
       .subscribe(data => {
         if (!!JSON.parse(data['_body']).content.scratch_list) {
           console.log(JSON.parse(data['_body']).content);
+          this.lo_title = JSON.parse(data['_body']).content;
           this.species = JSON.parse(data['_body']).content.scratch_list[0];
         }
         console.log(this.species);

@@ -30,14 +30,15 @@
             </ion-col>
           </ion-row>
           <ion-row class="guaguacai">
-            <ion-col>{{species.scratch_title}}</ion-col>
+            <ion-col>{{kind.scratch_title}}</ion-col>
             <ion-col text-right>面额: <span color="danger">¥{{lottery.participants}}</span></ion-col>
           </ion-row>
         </ion-col>
       </ion-row>
+      <kinds [InputMsg]="lo_title" (kinds)="receivekind($event)" class="border-top-yellow"></kinds>
       <shares (shares)="receiveCount($event)" class="border-top-yellow"></shares>
       <ion-row class="border-top-yellow">
-        <ion-col class="balance">账号余额: <span color="danger" >¥{{lottery.user_now_balance}}</span> </ion-col>
+        <ion-col class="balance">账号余额: <span color="danger">¥{{lottery.user_now_balance}}</span> </ion-col>
         <ion-col text-center>{{multiple}}张{{(lottery.participants)*multiple}}元</ion-col>
       </ion-row>
     </ion-grid>
@@ -52,7 +53,7 @@
           买
         </ion-col>
         <ion-col col-1 no-padding>
-          <button ion-button icon-only color="light" (click)="multiple=(multiple>1?multiple-1:multiple)"   class="multipleBtn">
+          <button ion-button icon-only color="light" (click)="multiple=(multiple>1?multiple-1:multiple)" class="multipleBtn">
              <ion-icon ios="ios-remove-outline" md="md-remove"></ion-icon>
           </button>
         </ion-col>
@@ -78,4 +79,3 @@
     </ion-grid>
   </ion-toolbar>
 </ion-footer>
-

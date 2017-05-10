@@ -35,6 +35,7 @@
           </ion-row>
         </ion-col>
       </ion-row>
+       <kinds [InputMsg]="lo_title" class="border-top-yellow"></kinds>
       <shares (shares)="receiveCount($event)" class="border-top-yellow"></shares>
       <ion-row class="border-top-yellow">
         <ion-col class="balance">账号余额: <span color="danger" >¥{{lottery.user_now_balance}}</span> </ion-col>

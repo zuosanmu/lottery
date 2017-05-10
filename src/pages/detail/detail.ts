@@ -172,22 +172,22 @@ export class DetailPage implements OnInit {
         }
         );
     }
-
   }
   //微信分享
   shareWechat(amount: number, order: number, icon_url: string) {
     if ((<any>window).appInterface != undefined) {
-      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖' + amount + '的红包', "彩店邀请码:" + order, icon_url, "http://www.rongqiangu.com/wechat-usr");
+      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖' + amount + '的红包', "彩店邀请码:" + order, icon_url, "http://192.168.0.192:7456/build?orderId="+this.lottery.order_no+"&&siteId="+order+'&&lotteryType='+this.detail.lottery_type);
     } else {
+      // http://www.rongqiangu.com/wechat-usr
       var params =
             {
                 "text" : "彩店邀请码:" + order,
                 "imageUrl" : icon_url,
                 "title" : '这是一个理论最高奖' + amount + '的红包',
-                "titleUrl" : "http://www.rongqiangu.com/wechat-usr",
+                "titleUrl" : "http://192.168.0.192:7456/build?orderId="+this.lottery.order_no+"&&siteId="+order+'&&lotteryType='+this.detail.lottery_type,
                 "description" : "彩站助手",
                 "site" : "彩站助手",
-                "siteUrl" : "http://www.rongqiangu.com/wechat-usr",
+                "siteUrl" : "http://192.168.0.192:7456/build?orderId="+this.lottery.order_no+"&&siteId="+order+'&&lotteryType='+this.detail.lottery_type,
                 "type" : $sharesdk.ContentType.Auto
             };
       $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {
