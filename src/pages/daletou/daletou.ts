@@ -13,6 +13,7 @@ import { LotteryService } from '../../service/lottery.service';
   templateUrl: 'daletou.html'
 })
 export class DaletouPage {
+  private _data;
   private lottery;
   private count: number = 1;
   private acount: number;
@@ -58,12 +59,12 @@ export class DaletouPage {
     )
       .subscribe(_order => {
         if (JSON.parse(_order['_body']).ret[0] == 'ok') {
-          let _data=JSON.parse(_order['_body']).content;
+          this._data = JSON.parse(_order['_body']).content;
           this.lottery.user_now_balance = this.lottery.user_now_balance - this.acount;
           this.shareHall(JSON.parse(_order['_body']).content.order_no);
-          this.presentConfirm(_data);
+          this.shareWechat(this._data.max_amount, this._data.site_id, this.lottery.icon_url);
         }
-        else{
+        else {
           this.presentAlert(JSON.parse(_order['_body']).msg);
         }
         // this.shareHall(JSON.parse(_order['_body']).content.order_no);
@@ -144,7 +145,7 @@ export class DaletouPage {
   }
   shareWechat(amount: number, order: number, icon_url: string) {
     if ((<any>window).appInterface != undefined) {
-      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖' + amount + '的红包', "彩店邀请码:" + order, icon_url, "http://www.rongqiangu.com/wechat-usr");
+      (<any>window).appInterface.shareWeiChat('这是一个理论最高奖' + amount + '的红包', "彩店邀请码:" + order, icon_url, "http://www.scjingyu.com/web-mobile?orderId="+this._data.order_no+"&&siteId="+order+'&&lotteryType='+this.lottery.lottery_type,"支付成功请分享");
     } else {
       var params =
         {

@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/observable';
 @Injectable()
 export class LotteryService {
-  private heroesUrl = 'http://139.224.195.129:80/rainstorm/envelope';
+  private heroesUrl = 'http://www.scjingyu.com/rainstorm/envelope';
   // private heroesUrl = 'http://192.168.0.109:8080/rainstorm/envelope';
   private headers;
   private options;
@@ -47,7 +47,7 @@ export class LotteryService {
   }
   getPost(req): Observable<any> {
     this.setHeaders(this.cookies);
-    // this.setHeaders('android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0bcw2nj4h7o70l5l0r9wa4gs9i4ib48fcsrw129a');
+    // this.setHeaders('android|user|1.0.0|000|proc|lsctbdakl12hnhu56cvvv3mc7tk1mxg8ruhls90ehtxeqrltasfb79k3048i55eqwqpk08obixh938733547mcguv1djf56cfnwf0xmuviaf3qdxqnfwp2ku0');
     // this.setHeaders('android|user|1.0.0|000|proc|1qo0anb8dhpn1ask56dbwgtt8iosf5oaxh3rrfoejsusmtwo5n7gxv4rhbs49n1uh3e8v9igjamnc9p6ktblm3xm0cx2b5p4hbpdl1wvq77irvq9qmctcdkah6982xb2');
     return this.http
       .post(this.heroesUrl, req, this.options);
