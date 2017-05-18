@@ -152,10 +152,10 @@ export class DaletouPage {
           "text": "彩店邀请码:" + order,
           "imageUrl": icon_url,
           "title": '这是一个理论最高奖' + amount + '的红包',
-          "titleUrl": "http://www.rongqiangu.com/wechat-usr",
+          "titleUrl": "http://www.scjingyu.com/web-mobile?orderId=" + this._data.order_no + "&&siteId=" + order + '&&lotteryType=' + this.lottery.lottery_type,
           "description": "彩站助手",
           "site": "彩站助手",
-          "siteUrl": "http://www.rongqiangu.com/wechat-usr",
+          "siteUrl": "http://www.scjingyu.com/web-mobile?orderId=" + this._data.order_no + "&&siteId=" + order + '&&lotteryType=' + this.lottery.lottery_type,
           "type": $sharesdk.ContentType.Auto
         };
       $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {

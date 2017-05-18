@@ -15,8 +15,8 @@ export class LotteryService {
     (<any>window).platformConfig = {};
     //新浪微博
     var sinaConf = {};
-    sinaConf["app_key"] = "2023073395";
-    sinaConf["app_secret"] = "986316ec6ca779bfe3ca27b95ada3c90";
+    sinaConf["app_key"] = "1012446062";
+    sinaConf["app_secret"] = "51c753d8fe43379da394c6fbb3f0f81c";
     sinaConf["redirect_uri"] = "https://api.weibo.com/oauth2/default.html";
     (<any>window).platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
     //微信
@@ -31,8 +31,8 @@ export class LotteryService {
     (<any>window).platformConfig[$sharesdk.PlatformID.WeChatMoments] = weixinMoments;
     //QQ
     var qqConf = {};
-    qqConf["app_id"] = "1106029522";
-    qqConf["app_key"] = "IBvHAYRGGYVyO5K0";
+    qqConf["app_id"] = "1106152162";
+    qqConf["app_key"] = "o7XSHrQZNSEMTuh8";
     (<any>window).platformConfig[$sharesdk.PlatformID.QQPlatform] = qqConf;
   }
   setHeaders(cookieValue: string) {
